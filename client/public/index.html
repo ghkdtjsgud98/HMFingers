@@ -1,0 +1,86 @@
+<!Doctype html>
+<html>
+<head>
+	<title>Transcribe voz a texto</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+	<link href="https://fonts.googleapis.com/css?family=Prompt|Roboto:100,300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style>
+		h1 {
+			font-family: 'Prompt',arial,sans-serif;
+			text-align: center;
+		}
+		#result {
+			height: 200px;
+			max-width:1200px;
+			box-shadow: 0 3px 10px gray;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 20px;
+			font-size: 16px;
+			font-family: 'Roboto',arial,sans-serif;
+			line-height: 25px;
+			color: #000;			
+			text-align:left;
+			padding: 5px 5px 5px 5px;
+			transition: box-shadow 300ms ease-out;
+		}
+		#result:hover{
+			box-shadow: 0 3px 20px gray;
+			transition: box-shadow 300ms ease-out;
+		}
+		button {
+			padding: 10px 20px 10px 20px; 
+			border-radius: 0px; 
+			border:none; 
+			background-color:#5ea6e5;
+			box-shadow: 0 3px 10px gray;
+		}
+		button:active {
+			background-color: #4d8bc1;
+			box-shadow: none;
+			border: none;
+		}
+	</style>
+</head>
+<body align="center">
+	<h1>Transcribe tu voz a texto<span style="font-size: 11px;"> (Eddy gay)</span></h1>
+	<div id='result'></div>
+	<button onclick='startConverting();'><i class="material-icons" style='color: #fff;'>record_voice_over</i></button>
+	<script type="text/javascript">
+		
+		var r = document.getElementById('result');
+
+			function startConverting () {
+				if('webkitSpeechRecognition' in window){
+					var speechRecognizer = new webkitSpeechRecognition();
+					speechRecognizer.continuous = true;
+					speechRecognizer.interimResults = true;
+					speechRecognizer.lang = 'es-Mx';
+					speechRecognizer.start();
+
+					var finalTranscripts = '';
+
+					speechRecognizer.onresult = function(event){
+						var interimTranscripts = '';
+						for(var i = event.resultIndex; i < event.results.length; i++){
+							var transcript = event.results[i][0].transcript;
+							transcript.replace("\n", "<br>");
+							if(event.results[i].isFinal){
+								finalTranscripts += transcript;
+							}else{
+								interimTranscripts += transcript;
+							}
+						}
+						r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
+					};
+					speechRecognizer.onerror = function (event) {
+					};
+				}else{
+					r.innerHTML = 'Tu buscador es obsoleto y no cuenta con tecnología de reconocimiento de voz'
+				}
+			}
+		</script>
+</body>
+</html>
