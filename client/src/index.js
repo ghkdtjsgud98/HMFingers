@@ -1,17 +1,22 @@
 import React from 'react';
+// import { CookiesProvider } from 'react-cookie';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import reportWebVitals from './reportWebVitals';
 
-//브라우저에 컴포넌트를 보여줌
 ReactDOM.render(
-
-  //param1 - 화면에 보여줘야되는 렌더링할 컴포넌트
-  <React.StrictMode><App /></React.StrictMode>,
-  
-  //param2 - 컴포넌트를 어디다 그려줄건지. index.html 파일에서 ID가 root인 엘리먼트를 찾아 뿌려줌
+  <React.StrictMode>
+    {/* <CookiesProvider> */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    {/* </CookiesProvider> */}
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
-serviceWorker.unregister();
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

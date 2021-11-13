@@ -1,15 +1,14 @@
 import React from 'react';
 import {
-
+  OutputBox
 } from './StyledComponent';
+// import { Link } from 'react-router-dom';
 
 const Output = () => {
+  
+  return (
+    <OutputBox/>
+  );
+};
 
-  return(
-    <>
-      <OutputBox>
-
-      </OutputBox>
-    </>
-  )
-}
+export default Output;

@@ -9,9 +9,11 @@ const MainPage = () => {
   
   return (
     <>
-      <MenuBar />
-      <DateComponent startDate={startDate} setStartDate={setStartDate} />
-      <TodayTodolistComponent selectDate={selectDate} />
+      <UpperBar />
+      <PlayBar />
+      <Output />
+      <FileHandling />
+      <KeywordSearch />
     </>
   );
 };

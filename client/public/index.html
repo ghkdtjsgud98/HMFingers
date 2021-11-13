@@ -1,86 +1,42 @@
-<!Doctype html>
-<html>
-<head>
-	<title>Transcribe voz a texto</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-	<link href="https://fonts.googleapis.com/css?family=Prompt|Roboto:100,300" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<style>
-		h1 {
-			font-family: 'Prompt',arial,sans-serif;
-			text-align: center;
-		}
-		#result {
-			height: 200px;
-			max-width:1200px;
-			box-shadow: 0 3px 10px gray;
-			margin-left: auto;
-			margin-right: auto;
-			margin-bottom: 20px;
-			font-size: 16px;
-			font-family: 'Roboto',arial,sans-serif;
-			line-height: 25px;
-			color: #000;			
-			text-align:left;
-			padding: 5px 5px 5px 5px;
-			transition: box-shadow 300ms ease-out;
-		}
-		#result:hover{
-			box-shadow: 0 3px 20px gray;
-			transition: box-shadow 300ms ease-out;
-		}
-		button {
-			padding: 10px 20px 10px 20px; 
-			border-radius: 0px; 
-			border:none; 
-			background-color:#5ea6e5;
-			box-shadow: 0 3px 10px gray;
-		}
-		button:active {
-			background-color: #4d8bc1;
-			box-shadow: none;
-			border: none;
-		}
-	</style>
-</head>
-<body align="center">
-	<h1>Transcribe tu voz a texto<span style="font-size: 11px;"> (Eddy gay)</span></h1>
-	<div id='result'></div>
-	<button onclick='startConverting();'><i class="material-icons" style='color: #fff;'>record_voice_over</i></button>
-	<script type="text/javascript">
-		
-		var r = document.getElementById('result');
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-			function startConverting () {
-				if('webkitSpeechRecognition' in window){
-					var speechRecognizer = new webkitSpeechRecognition();
-					speechRecognizer.continuous = true;
-					speechRecognizer.interimResults = true;
-					speechRecognizer.lang = 'es-Mx';
-					speechRecognizer.start();
-
-					var finalTranscripts = '';
-
-					speechRecognizer.onresult = function(event){
-						var interimTranscripts = '';
-						for(var i = event.resultIndex; i < event.results.length; i++){
-							var transcript = event.results[i][0].transcript;
-							transcript.replace("\n", "<br>");
-							if(event.results[i].isFinal){
-								finalTranscripts += transcript;
-							}else{
-								interimTranscripts += transcript;
-							}
-						}
-						r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
-					};
-					speechRecognizer.onerror = function (event) {
-					};
-				}else{
-					r.innerHTML = 'Tu buscador es obsoleto y no cuenta con tecnología de reconocimiento de voz'
-				}
-			}
-		</script>
-</body>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div>
+      <div id="google_translate_element"></div>
+      <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+        }
+      </script>
+      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </div>
+  </body>
 </html>

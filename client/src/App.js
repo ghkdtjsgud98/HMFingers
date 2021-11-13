@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import LandingPage from './screens/LandingPage';
+import LoginPage from './screens/LoginPage';
+import RegisterPage from './screens/RegisterPage';
 
-//Class 형태로 만들어진 컴포넌트는 꼭 render 함수 있어야하며 render 함수 내부에서 JSX 코드를 return 해주어야함.
-class App extends Component {
+import GlobalStyle from './GlobalStyle';
+import MainPage from './screens/MainPage';
+import { Route, Routes } from 'react-router-dom';
 
-  //render 함수
-  render() {
-  
-    return (
-    
-      //JSX
-      <div>리액트는 처음이지?</div>
-    );
-  }
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <Routes>
+        <Route path='/' element={<LandingPage/>} exact />
+        <Route path='/login' element={<LoginPage/>} />
+        <Route path='/register' element={<RegisterPage/>} />
+        <Route path='/main' element={<MainPage/>} />
+      </Routes>
+    </>
+  );
 }
-export default App; //현 컴포넌트를 다른 곳에서 불러와 사용할 수 있도록 내보내기를 해줌.
+
+export default App;
+
