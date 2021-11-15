@@ -16,6 +16,7 @@ function App() {
         <Route path='/register' element={<RegisterPage/>} />
         <Route path='/main' element={<MainPage/>} />
       </Routes>
+      {/* TEST */}
     </>
   );
 }
