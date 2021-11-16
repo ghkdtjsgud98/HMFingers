@@ -1,13 +1,10 @@
 import styled from 'styled-components';
+import { RiSettings3Line } from "react-icons/ri";
 
+
+{/************************Output************************/}
 export const OutputBox = styled.div`
   position: absolute;
-<<<<<<< Updated upstream
-  width: 500px;
-  height: 500px;
-  background-color: rgba(172, 211, 220, 0.2);
-`;
-=======
   // width: 900px;
   // height: 650px;
   width : 62.5%;
@@ -55,7 +52,6 @@ export const ScriptWrapper = styled.div`
   height : 91.5%;
   background : rgba(243, 243, 243, 1);
   border-radius: 0 0 30px 30px;
-  margin : 10px;
 `;
 // export const SummaryWrapper = styled.div`
 //   position : relative;
@@ -156,4 +152,3 @@ export const FileAllButton = styled.div`
   text-align : center;
   cursor: pointer;
 `;
->>>>>>> Stashed changes
