@@ -1,0 +1,25 @@
+{
+  "name": "promise-mysql",
+  "version": "1.0.0",
+  "description": "HMFingersServer",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghkdtjsgud98/HMFingers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghkdtjsgud98/HMFingers/issues"
+  },
+  "homepage": "https://github.com/ghkdtjsgud98/HMFingers#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mysql": "^2.18.1",
+    "promise-mysql": "^5.0.4"
+  }
+}
