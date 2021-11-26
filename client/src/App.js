@@ -10,12 +10,13 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Routes>
+      {/* <Routes>
         <Route path='/' element={<LandingPage/>} exact />
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/register' element={<RegisterPage/>} />
         <Route path='/main' element={<MainPage/>} />
-      </Routes>
+      </Routes> */}
+      <MainPage/>
     </>
   );
 }

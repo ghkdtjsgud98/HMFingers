@@ -17,6 +17,8 @@ export const OutputBox = styled.div`
   display : flex;
   flex-direction : column;
   justify-align : center;
+  z-index : 1;
+
 `;
 export const TabWrapper = styled.div`
   position : relative;
@@ -82,6 +84,8 @@ export const PlayBarBox = styled.div`
   top : 120px;
   border-radius: 10px;
   background : rgba(153, 153, 153, 1);
+
+  z-index : 1;
 `;
 
 {/************************KeywordSearch************************/}
@@ -95,6 +99,8 @@ export const KeywordSearchBox = styled.div`
   top: 120px;
   border: 1px solid rgba(153, 153, 153, 1);
   border-radius: 10px;
+
+  z-index : 1;
 `;
 export const KeywordSearchInput = styled.input.attrs({
   placeholder: "Search"
@@ -130,6 +136,8 @@ export const FileHandlingBox = styled.div`
 
   display : flex;
   flex-direction : column;
+
+  z-index : 1;
 `;
 export const FileWrapper = styled.div`
   position : relaitve;
