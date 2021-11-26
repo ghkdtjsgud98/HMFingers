@@ -15,18 +15,18 @@ export const UpperBarBox = styled.div`
 `;
 export const UpperBoxUploadIcon = styled(FiUpload)`
   position: fixed;
-  width: 50px;
-  height: 50px;
-  right: 100px;
-  top : 15px;
+  width: 40px;
+  height: 40px;
+  right: 90px;
+  top : 20px;
   cursor: pointer;
 `;
 export const UpperBoxMeIcon = styled(BsPersonCircle)`
   position: fixed;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   right: 30px;
-  top: 15px;
+  top: 20px;
   cursor: pointer;
 `;
 export const TitleWrapper = styled.div`
@@ -38,7 +38,7 @@ export const TitleWrapper = styled.div`
 `;
 export const SubTitleWrapper = styled.div`
   position : absolute;
-  top : 50px;
+  top : 55px;
   font-size : 12px;
-  font-weight : 400;
+  font-weight : 500;
 `;
