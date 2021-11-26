@@ -32,7 +32,8 @@ export const TabElement = styled.div`
   position : relative;
   width : 33.333%;
   height : 100%;
-  background : rgba(196, 196, 196, 1);  //tab 선택되면 rgba(243, 243, 243, 1) 로 색 변경
+  // background : rgba(196, 196, 196, 1);
+  background : ${(props) => props.isActive === 'active' ? 'rgba(243, 243, 243, 1)':'rgba(196, 196, 196, 1)'};
   border-radius: 30px 30px 0px 0px;
   // border-right :  1px solid rgba(196, 196, 196, 1);
   // border-left :  1px solid rgba(196, 196, 196, 1);
@@ -40,7 +41,7 @@ export const TabElement = styled.div`
   padding : 10px;
   font-size : 30px;
   font-weight : bold;
-  color : rgba(148, 148, 148, 1);   //tab 선택되면 rgba(0, 0, 0, 1) 로 변경되게
+  color : ${(props) => props.isActive === 'active' ? 'rgba(0, 0, 0, 1)':'rgba(148, 148, 148, 1)'};
   cursor: pointer;
 `;
 
