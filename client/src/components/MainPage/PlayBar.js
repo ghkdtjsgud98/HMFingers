@@ -3,19 +3,13 @@ import {
   PlayBarBox,
 
 } from './StyledComponent';
-<<<<<<< HEAD
-=======
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
->>>>>>> JW
 // import { Link } from 'react-router-dom';
 
 const PlayBar = () => {
   return (
     <>
-<<<<<<< HEAD
-    <PlayBarBox>PlayBar</PlayBarBox>
-=======
     <PlayBarBox>
       <AudioPlayer
         autoPlay='false'
@@ -24,7 +18,6 @@ const PlayBar = () => {
         volume='1.0'
       />
     </PlayBarBox>
->>>>>>> JW
     </>
   );
 };

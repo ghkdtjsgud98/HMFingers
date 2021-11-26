@@ -11,27 +11,10 @@ import Translate from './Translate';
 import Summary from './Summary';
 // import { Link } from 'react-router-dom';
 
-<<<<<<< HEAD
-const Output = () => {
-
-  return (
-    <OutputBox>
-      <TabWrapper>
-        <TabElement>SCRIPT</TabElement>
-        <TabElement>SUMMARY</TabElement>
-        <TabElement>TRANSLATE</TabElement>
-      </TabWrapper>
-      <ScriptWrapper>
-        //script
-      </ScriptWrapper>
-    </OutputBox>
-  );
-=======
 const menuList = {
   0: <Script />,
   1: <Summary />,
   2: <Translate />
->>>>>>> JW
 };
 
 class Output extends React.Component{
