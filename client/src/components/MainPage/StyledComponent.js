@@ -8,7 +8,12 @@ export const OutputBox = styled.div`
   // width: 900px;
   // height: 650px;
   width : 62.5%;
+<<<<<<< HEAD
   height : 72.2%;
+=======
+  // height : 72.2%;
+  height: 65%; // playbar 수정중 임시로 적용
+>>>>>>> JW
   bottom : 32px;
   left : 30px;
   background-color: rgba(243, 243, 243, 1);
@@ -32,15 +37,26 @@ export const TabElement = styled.div`
   position : relative;
   width : 33.333%;
   height : 100%;
+<<<<<<< HEAD
   background : rgba(196, 196, 196, 1);  //tab 선택되면 rgba(243, 243, 243, 1) 로 색 변경
+=======
+  // background : rgba(196, 196, 196, 1);
+  background : ${(props) => props.isActive === 'active' ? 'rgba(243, 243, 243, 1)':'rgba(196, 196, 196, 1)'};
+>>>>>>> JW
   border-radius: 30px 30px 0px 0px;
   // border-right :  1px solid rgba(196, 196, 196, 1);
   // border-left :  1px solid rgba(196, 196, 196, 1);
   text-align : center;
   padding : 10px;
+<<<<<<< HEAD
   font-size : 30px;
   font-weight : bold;
   color : rgba(148, 148, 148, 1);   //tab 선택되면 rgba(0, 0, 0, 1) 로 변경되게
+=======
+  font-size : 24px;
+  font-weight : bold;
+  color : ${(props) => props.isActive === 'active' ? 'rgba(0, 0, 0, 1)':'rgba(148, 148, 148, 1)'};
+>>>>>>> JW
   cursor: pointer;
 `;
 
@@ -88,7 +104,11 @@ export const KeywordSearchBox = styled.div`
   // width: 420px;
   // height: 60px;
   width : 29.2%;
+<<<<<<< HEAD
   height : 6.7%;
+=======
+  height : 6%;
+>>>>>>> JW
   right: 30px;
   top: 120px;
   border: 1px solid rgba(153, 153, 153, 1);
@@ -102,6 +122,7 @@ export const KeywordSearchInput = styled.input.attrs({
   width : 80%;
   height : 100%;
   margin-left : 10px;
+<<<<<<< HEAD
   font-size : 30px;
 `;
 export const KeywordSearchSettingIcon = styled(RiSettings3Line)`
@@ -110,6 +131,16 @@ export const KeywordSearchSettingIcon = styled(RiSettings3Line)`
   height: 48px;
   right: 6px;
   margin : 5px 0;
+=======
+  font-size : 20px;
+`;
+export const KeywordSearchSettingIcon = styled(RiSettings3Line)`
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  right: 6px;
+  margin : 4px 0;
+>>>>>>> JW
   cursor: pointer;
   color : rgba(196, 196, 196, 1);
 `;
@@ -147,8 +178,13 @@ export const FileAllButton = styled.div`
   right : 12px;
   bottom : 12px;
   border-radius : 20px;
+<<<<<<< HEAD
   font-size : 20px;
   font-weight : bold;
+=======
+  text-size : 20px;
+  weight : 400px;
+>>>>>>> JW
   text-align : center;
   cursor: pointer;
 `;
