@@ -13,7 +13,7 @@ connection.connect(function(err) {
 })
 
 /** 테스트 쿼리 사용하지 마세요. */
-app.post('/users/register', function (req, res) {
+/* app.post('/users/register', function (req, res) {
   const userPW = req.body.userPwd;
   const userID = req.body.userName;
   const userPK = Math.round(Math.random() * 10000)
@@ -40,6 +40,6 @@ app.post('/users/register', function (req, res) {
           'message': message
       });
   });
-});
+}); */
 
 connection.end()
