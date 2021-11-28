@@ -1,5 +1,10 @@
-import { dbConfig } from './config/database.js'
 import mysql from 'mysql'
+import express from 'express'
+import dotenv from 'dotenv'
+import { dbConfig } from './config/database.js'
+import { convertAudioToScript } from './modules/speechToText/speechToTextApi.js'
+
+dotenv.config()
 
 var connection = mysql.createConnection(dbConfig)
 
@@ -11,6 +16,30 @@ connection.connect(function(err) {
 
   console.log('Connected to database.')
 })
+
+const app = express();
+
+/** 서버가 잘 실행됐는지 확인하는 코드 */
+/* app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+*/
+
+export const getScriptFromFile = (request) => {
+  app.get('/speechToText/:filePath', (req, res) => {
+    // query string 방식: ex) &filePath=/abc -> req.query.filePath
+    // router path 방식: ex) /:filePath로 listen. filePath/abc -> req.params.filePath
+    const filePath = req.params.filePath
+    const response = convertAudioToScript(filePath)
+    res.send(response)
+  })
+}
+
+
+app.listen(process.env.PORT, () => {
+  console.log("SERVER IS RUNNING...");
+});
+
 
 /** 테스트 쿼리 사용하지 마세요. */
 /* app.post('/users/register', function (req, res) {

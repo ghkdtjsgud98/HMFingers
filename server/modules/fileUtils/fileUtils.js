@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { BASE_64 } from '../../common/constants'
+import { BASE_64 } from '../../common/constants.js'
 
 export const readLocalFile = (filePath) => {
   return fs.readFileSync(filePath) 

@@ -1,9 +1,8 @@
 import speech from '@google-cloud/speech'
-import path from 'path'
 import dotenv from 'dotenv'
-import { ENCODING_LINEAR16, LANGUAGE_CODE_KR } from '../../common/constants'
-import { transFileToAudioBytes } from '../fileUtils/fileUtils'
-
+import { ENCODING_LINEAR16, LANGUAGE_CODE_KR } from '../../common/constants.js'
+import { transFileToAudioBytes } from '../fileUtils/fileUtils.js'
+ 
 dotenv.config()
 
 const client = new speech.SpeechClient({ projectId: process.env.GCP_PROJECT_ID })
@@ -39,5 +38,5 @@ const client = new speech.SpeechClient({ projectId: process.env.GCP_PROJECT_ID }
   console.log(`Transcription: ${transcription}`);
 }
 
-await convertAudioToScript();
+// await convertAudioToScript();
 
