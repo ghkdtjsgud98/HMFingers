@@ -133,7 +133,7 @@ export const ModalTitle = styled.div`
   width : 100%;
   height : 30px;
   top : 25px;
-  font-size : 30px;
+  font-size : 28px;
   font-weight : bold;
   display : flex;
   flex-direction : column;
@@ -143,7 +143,7 @@ export const ModalTitle = styled.div`
 export const ModalCloseButton = styled.span`
   position : absolute;
   
-  right : 10px;
+  right : 15px;
   margin-bottom : 0px;
   font-size: 30px;
   font-weight: bold;

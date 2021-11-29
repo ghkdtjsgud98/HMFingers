@@ -38,23 +38,20 @@ import {
 const UploadOption = (props) => {
 
   const { isOpen, close } = props;
-  const [startDate, setStartDate] = useState(new Date());
   const [file, setFile] = useState();
-  const [fileName, setFileName] = useState();
   
-  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-    //background : pink 임시지정해둠
-    <DateText onClick={onClick} ref={ref}>      
-      {value}
-    </DateText>     
-  ));  
+  // const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+  //   //background : pink 임시지정해둠
+  //   <DateText onClick={onClick} ref={ref}>      
+  //     {value}
+  //   </DateText>     
+  // ));  
   
   return (
     <>
       {isOpen ? ( 
         <ModalBackground>
           <UploadOptionModal>
-
             <ModalCloseButton onClick={close}> 
               &times;
             </ModalCloseButton>
@@ -111,7 +108,10 @@ const UploadOption = (props) => {
                 </ModalContentsTitle>
                 <UploadOptionDateSelect> 
                   {/* <DateIcon /> */}
-                  <UploadOptionDateInput type="date" value="2021-01-01"/>
+                  <UploadOptionDateInput 
+                    type="date"
+                    required
+                  />
                   {/* <ReactDatePicker
                     selected={startDate}           
                     onChange={(date) => setStartDate(date)}
