@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import UploadOption from "./UploadOption";
-import  {UpperBoxUploadButton, UpperBoxUploadIcon} from "../UpperBarStyle/StyledComponent";
+import  {UpperBoxUploadButton, UpperBoxUploadIcon} from "./StyledComponent";
 
 class UploadOptionButton extends Component {
   constructor(props) {
