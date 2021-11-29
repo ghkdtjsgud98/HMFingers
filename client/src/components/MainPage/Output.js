@@ -38,7 +38,7 @@ class Output extends React.Component{
         isActive={`${this.state.menu === 0? 'active': null}`} 
         onClick={() => this.changeMenu(0)}
         >
-          Script
+          SCRIPT
         </TabElement>
         <TabElement
         isActive={`${this.state.menu === 1? 'active': null}`} 

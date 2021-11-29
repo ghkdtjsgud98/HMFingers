@@ -9,7 +9,7 @@ import {
   TitleWrapper,
   SubTitle,
   Title,
-} from '../UpperBarStyle/StyledComponent';
+} from './StyledComponent';
 import UploadOptionButton from './UploadOptionButton';
 
 const UpperBar = () => {

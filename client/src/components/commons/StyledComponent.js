@@ -110,7 +110,7 @@ export const SubTitle = styled.div`
 
 export const UploadOptionModal = styled.div`
   position: fixed;
-  width: 400px;
+  width: 350px;
   height: 350px;
   top: 50px;
   right: 120px;
@@ -167,7 +167,7 @@ export const ContentUploadButton = styled.button`
 
 `;
 
-export const ModalContentsWrapper = styled.div`
+export const ModalContentsWrapper = styled.form`
   width: 100%;
   height : 300px;
   position: absolute;
@@ -207,10 +207,17 @@ export const UploadOptionContentCheckBox = styled.div`
   margin-bottom : 10px;
 `;
 
-export const UploadOptionFileSelect = styled.div`
+export const UploadOptionCheckInput = styled.input`
 
 `;
 
+export const UploadOptionFileSelect = styled.div`
+  margin-left: 5px;
+`;
+
+export const UploadOptionFileInput = styled.input`
+
+`;
 
 
 export const UploadOptionNicknameBox = styled.div`
@@ -232,7 +239,8 @@ export const UploadOptionNicknameInput = styled.input.attrs({
     height : 25px;
     border: none;
     border-bottom: 1px solid #000000;
-    font-size : 18px;
+    font-size : 15px;
+    padding-left: 5px;
   `;
 
 
@@ -254,6 +262,12 @@ export const UploadOptionDateSelect = styled.div`
   border: none;
   border-bottom: 1px solid #000000;
   display : flex;
+  padding-left: 5px; 
+`;
+
+export const UploadOptionDateInput = styled.input`
+  height: 20px;
+  width: 170px;
 `;
 
 export const DateText = styled.div`
@@ -269,8 +283,8 @@ export const DateText = styled.div`
 
 `;
 
-export const DateIcon = styled(BiCalendar)`
-  position : absolute;
-  width: 20px;
-  height: 20px;
-`;
+// export const DateIcon = styled(BiCalendar)`
+//   position : absolute;
+//   width: 20px;
+//   height: 20px;
+// `;
