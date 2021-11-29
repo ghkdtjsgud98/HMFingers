@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { FiUpload } from "react-icons/fi"
 import { BsPersonCircle } from "react-icons/bs"
+import { GoPrimitiveDot } from "react-icons/go"
+import { BiCalendar } from "react-icons/bi"
+
+
 
 
 {/************************UpperBar************************/}
@@ -50,6 +54,12 @@ export const UpperBoxUploadIcon = styled(FiUpload)`
   color : #646464;
   
 `;
+export const UploadContentsDot = styled(GoPrimitiveDot)`
+  width : 15px;
+  height : 15px;
+  margin-right : 5px;
+`;
+
 
 export const UpperBoxMeButton = styled.button`
   position : fixed;
@@ -187,6 +197,7 @@ export const UploadOptionFileSelectBox = styled.div`
   flex-direction: column;
  
 `;
+
 export const UploadOptionContentCheckBox = styled.div`
   position : relative;
   
@@ -195,6 +206,7 @@ export const UploadOptionContentCheckBox = styled.div`
   display: flex;
   margin-bottom : 10px;
 `;
+
 export const UploadOptionFileSelect = styled.div`
 
 `;
@@ -234,7 +246,31 @@ export const UploadOptionDateBox = styled.div`
   top : 40px;
 `;
 
+
 export const UploadOptionDateSelect = styled.div`
+  position : relative;
+  width: 200px;
+  height : 25px;
+  border: none;
+  border-bottom: 1px solid #000000;
+  display : flex;
+`;
+
+export const DateText = styled.div`
+  position : relative;
+  width: 200px;
+  height : 25px;
+  font-size : 18px;
+  cursor: pointer;
+  left : 30px;
+  color : rgba(196, 196, 196, 1);
+  
+  background : pink;    //임시지정
 
 `;
 
+export const DateIcon = styled(BiCalendar)`
+  position : absolute;
+  width: 20px;
+  height: 20px;
+`;
