@@ -8,8 +8,8 @@ export const OutputBox = styled.div`
   // width: 900px;
   // height: 650px;
   width : 62.5%;
-  // height : 72.2%;
-  height: 65%; // playbar 수정중 임시로 적용
+  height : 72.2%;
+  //height: 65%; // playbar 수정중 임시로 적용
   bottom : 32px;
   left : 30px;
   background-color: rgba(243, 243, 243, 1);
@@ -41,7 +41,7 @@ export const TabElement = styled.div`
   // border-right :  1px solid rgba(196, 196, 196, 1);
   // border-left :  1px solid rgba(196, 196, 196, 1);
   text-align : center;
-  padding : 10px;
+  padding : 13px;
   font-size : 24px;
   font-weight : bold;
   color : ${(props) => props.isActive === 'active' ? 'rgba(0, 0, 0, 1)':'rgba(148, 148, 148, 1)'};
@@ -79,11 +79,11 @@ export const PlayBarBox = styled.div`
   // width : 900px;
   // height : 60px;
   width : 62.5%;
-  height : 6.7%;
+  height : 6%;
   left : 30px;
   top : 120px;
-  border-radius: 10px;
-  background : rgba(153, 153, 153, 1);
+  //border-radius: 10px;
+  //background : rgba(153, 153, 153, 1);
 
   z-index : 1;
 `;
@@ -117,7 +117,7 @@ export const KeywordSearchSettingIcon = styled(RiSettings3Line)`
   width: 36px;
   height: 36px;
   right: 6px;
-  margin : 4px 0;
+  margin : 8px 0;
   cursor: pointer;
   color : rgba(196, 196, 196, 1);
 `;
