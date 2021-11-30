@@ -48,12 +48,18 @@ export const TabElement = styled.div`
   cursor: pointer;
 `;
 
-export const ScriptWrapper = styled.div`
+export const ContentsWrapper = styled.div`
+  display: flex;
+  height: 85%;
   position: relative;
-  margin: 10px;
+  margin: 15px 15px 0 20px;
   font-size: 17px;
   line-height: 30px;
-  overflow: auto;
+  overflow: ${(props) => props.isSummary === 'summary' ? 'none':'auto'};;
+`;
+
+export const ScriptWrapper = styled.div`
+
 `;
 // export const SummaryWrapper = styled.div`
 //   position : relative;
@@ -71,25 +77,16 @@ export const ScriptWrapper = styled.div`
 // `;
 
 export const SummaryWrapper = styled.div`
-  position: relative;
-  margin: 10px;
-  height: 100%;
-  background: pink;
+  // height: 100%;
+  overflow: auto; 
+  width: 80%;
+`
+
+export const SummaryWordsWrapper = styled.div`
+  border-left: 1px solid #646464;
 `;
 
-export const SummaryContentsWrapper = styled.div`
-  width: 65%;
-  height: 100%;
-  background: white;
-  overflow: auto;
-  line-height: 30px;
-`;
-export const SummaryWordsWrapper = styled.div`
-  width: 35%;
-  height: 100%;
-  background: black;
-  overflow: auto;
-  line-height: 30px;
+export const TranslateWrapper = styled.div`
 `;
 
 
