@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {SummaryWrapper, SummaryContentsWrapper, SummaryWordsWrapper} from './StyledComponent';
 
 class Summary extends React.Component{
     constructor(props) {
@@ -11,7 +12,13 @@ class Summary extends React.Component{
 
     render(){
         return(
-            <div>Summary content!</div>
+          <>
+            <SummaryWrapper>
+              zz
+              {/* <SummaryContentsWrapper>temp</SummaryContentsWrapper>
+              <SummaryWordsWrapper>temp</SummaryWordsWrapper> */}
+            </SummaryWrapper>
+          </>
         )
     }
   }

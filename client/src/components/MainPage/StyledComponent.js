@@ -49,13 +49,11 @@ export const TabElement = styled.div`
 `;
 
 export const ScriptWrapper = styled.div`
-  position : relative;
-  // width : 900px;
-  // height : 595px;
-  width : 62.5%;
-  height : 91.5%;
-  background : rgba(243, 243, 243, 1);
-  border-radius: 0 0 30px 30px;
+  position: relative;
+  margin: 10px;
+  font-size: 17px;
+  line-height: 30px;
+  overflow: auto;
 `;
 // export const SummaryWrapper = styled.div`
 //   position : relative;
@@ -71,6 +69,28 @@ export const ScriptWrapper = styled.div`
 //   background : rgba(243, 243, 243, 1);
 //   border-radius: 30px;
 // `;
+
+export const SummaryWrapper = styled.div`
+  position: relative;
+  margin: 10px;
+  height: 100%;
+  background: pink;
+`;
+
+export const SummaryContentsWrapper = styled.div`
+  width: 65%;
+  height: 100%;
+  background: white;
+  overflow: auto;
+  line-height: 30px;
+`;
+export const SummaryWordsWrapper = styled.div`
+  width: 35%;
+  height: 100%;
+  background: black;
+  overflow: auto;
+  line-height: 30px;
+`;
 
 
 {/************************PlayBar************************/}
