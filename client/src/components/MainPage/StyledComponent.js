@@ -48,14 +48,18 @@ export const TabElement = styled.div`
   cursor: pointer;
 `;
 
+export const ContentsWrapper = styled.div`
+  display: flex;
+  height: 85%;
+  position: relative;
+  margin: 15px 15px 0 20px;
+  font-size: 17px;
+  line-height: 30px;
+  overflow: ${(props) => props.isSummary === 'summary' ? 'none':'auto'};;
+`;
+
 export const ScriptWrapper = styled.div`
-  position : relative;
-  // width : 900px;
-  // height : 595px;
-  width : 62.5%;
-  height : 91.5%;
-  background : rgba(243, 243, 243, 1);
-  border-radius: 0 0 30px 30px;
+
 `;
 // export const SummaryWrapper = styled.div`
 //   position : relative;
@@ -71,6 +75,19 @@ export const ScriptWrapper = styled.div`
 //   background : rgba(243, 243, 243, 1);
 //   border-radius: 30px;
 // `;
+
+export const SummaryWrapper = styled.div`
+  // height: 100%;
+  overflow: auto; 
+  width: 80%;
+`
+
+export const SummaryWordsWrapper = styled.div`
+  border-left: 1px solid #646464;
+`;
+
+export const TranslateWrapper = styled.div`
+`;
 
 
 {/************************PlayBar************************/}

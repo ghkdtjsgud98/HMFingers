@@ -3,7 +3,7 @@ import {
   OutputBox,
   TabWrapper,
   TabElement,
-  ScriptWrapper,
+  ContentsWrapper,
 
 } from './StyledComponent';
 import Script from './Script';
@@ -35,27 +35,29 @@ class Output extends React.Component{
     <OutputBox>
       <TabWrapper>
         <TabElement 
-        isActive={`${this.state.menu === 0? 'active': null}`} 
-        onClick={() => this.changeMenu(0)}
+          isActive={`${this.state.menu === 0? 'active': null}`} 
+          onClick={() => this.changeMenu(0)}
         >
           SCRIPT
         </TabElement>
         <TabElement
-        isActive={`${this.state.menu === 1? 'active': null}`} 
-        onClick={() => this.changeMenu(1)}
+          isActive={`${this.state.menu === 1? 'active': null}`} 
+          onClick={() => this.changeMenu(1)}
         >
           SUMMARY
         </TabElement>
         <TabElement
-        isActive={`${this.state.menu === 2? 'active': null}`} 
-        onClick={() => this.changeMenu(2)}
+          isActive={`${this.state.menu === 2? 'active': null}`} 
+          onClick={() => this.changeMenu(2)}
         >
           TRANSLATE
         </TabElement>
       </TabWrapper>
-      <ScriptWrapper>
+      <ContentsWrapper
+        isSummary={`${this.state.menu ===1? 'summary': null}`}
+      >
         {menuList[this.state.menu]}
-      </ScriptWrapper>
+      </ContentsWrapper>
     </OutputBox>
     )
   }
