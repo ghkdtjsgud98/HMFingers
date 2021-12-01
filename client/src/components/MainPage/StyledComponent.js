@@ -80,10 +80,11 @@ export const SummaryWrapper = styled.div`
   // height: 100%;
   overflow: auto; 
   width: 80%;
+  margin-right : 5px;
 `
 
 export const SummaryWordsWrapper = styled.div`
-  border-left: 1px solid #646464;
+  border-left: 1px solid #c4c4c4;
 `;
 
 export const TranslateWrapper = styled.div`
