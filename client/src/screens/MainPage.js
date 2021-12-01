@@ -7,11 +7,17 @@ import PlayBar from '../components/MainPage/PlayBar';
 
 const MainPage = () => {
 
+  const [currentTime2, setCurrentTime2] = useState();
+
+  const getTime2 = (t) => {
+    setCurrentTime2(t);
+  }
+
   return (
     <>
       <UpperBar />
-      <PlayBar />
-      <Output />
+      <PlayBar currentTime2={currentTime2} />
+      <Output getTime2={getTime2} />
       <KeywordSearch />
       <FileHandling />
     </>

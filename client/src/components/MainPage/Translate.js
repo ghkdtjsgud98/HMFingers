@@ -1,22 +1,13 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {TranslateWrapper} from "./StyledComponent";
 
-class Translate extends React.Component{
-    constructor(props) {
-      super();
+const Translate = () => {
+  var [contents, setContents] = useState("Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.");
   
-      this.state = {
-        menu: 0,
-        contents: "붙잡아 넣는 안고, 있는 노래하며 살았으며, 귀는 그것은 소담스러운 봄바람이다. 이상의 눈에 곳이 이것을 맺어, 있는 것이다. 원질이 힘차게 그들은 미묘한 그리하였는가? 가는 청춘의 품었기 구하지 말이다. 설산에서 주는 사라지지 않는 무한한 동력은 가치를 철환하였는가? 커다란 그들의 곳으로 길을 청춘을 있다. 그러므로 되려니와, 청춘에서만 오아이스도 그들의 황금시대의 꽃이 끓는다. 이상을 대한 피에 끝까지 낙원을 무엇을 맺어, 있다. 관현악이며, 두손을 찾아다녀도, 품에 새가 무엇을 피는 있으랴? 피에 열매를 청춘의 그들의 얼마나 보는 얼음과 불어 피다. 산야에 하였으며, 사랑의 있으랴? 공자는 착목한는 황금시대의 듣기만 이상은 소리다.이것은 풀이 것이다. 끓는 원질이 타오르고 생의 아름다우냐? 없는 보이는 일월과 위하여 뿐이다. 내는 인생에 속잎나고, 위하여서 끝에 미인을 것이다. 속에서 위하여, 싹이 쓸쓸한 구하지 위하여서. 구하지 곳으로 무엇을 인간에 방지하는 것이다. 기관과 능히 황금시대의 피가 황금시대다. 주는 곳이 얼마나 산야에 간에 봄바람이다. 보이는 만천하의 인간은 천하를 동력은 피에 있는가? 청춘은 가장 끓는 설레는 듣는다. 천고에 찾아 몸이 풍부하게 그들의 품에 피다. 열락의 방황하여도, 발휘하기 생의 갑 품으며, 인간에 때문이다. 없으면 꾸며 이상의 없으면, 피에 가슴에 바이며, 소금이라 위하여, 것이다. 가치를 열락의 용감하고 새 사막이다. 이상의 우리의 내려온 튼튼하며, 것이다. 설산에서 거친 예가 청춘이 부패를 품고 그러므로 부패뿐이다. 심장의 천자만홍이 인생에 우리의 뿐이다. 뜨고, 길을 인생을 것이다. 뜨고, 바로 대고, 사람은 이는 이상은 쓸쓸하랴? 이는 그와 피가 목숨이 것이다. 평화스러운 인도하겠다는 만천하의 피고, 역사를 열락의 길지 구할 인생을 이것이다. 그들에게 우는 싸인 반짝이는 별과 용기가 부패뿐이다. 방황하여도, 있는 원대하고, 더운지라 이상의 길을 가장 따뜻한 뿐이다. 힘차게 이것은 아니더면, 뛰노는 같이 반짝이는 들어 얼음에 능히 끓는다. 가슴이 위하여 앞이 생생하며, 많이 얼마나 힘차게 불러 아니다. 천고에 평화스러운 황금시대를 군영과 되는 것이다. 발휘하기 용기가 품에 것이 끓는 낙원을 인간이 지혜는 말이다. 이는 하였으며, 위하여 내는 청춘의 피다. 곧 너의 어디 쓸쓸한 인생을 행복스럽고 칼이다. 못할 수 끓는 그들에게 주며, 하였으며, 우는 부패뿐이다. 피가 사랑의 인간의 그리하였는가? 청춘이 하는 우리 대고, 가장 꽃이 열락의 못하다 불어 힘있다. 바이며, 그들에게 거친 피고, 아니다. 속에 창공에 피가 방황하였으며, 같으며, 유소년에게서 얼마나 황금시대다. 인류의 풀밭에 가치를 밝은 속에 청춘의 같이, 사막이다. 영원히 갑 역사를 힘있다. 스며들어 무한한 쓸쓸한 가진 관현악이며, 위하여 위하여 있으랴? 더운지라 것이 가진 열락의 심장은 것이다. 속에 살 살았으며, 목숨이 뛰노는 오직 역사를 피가 아니다. 반짝이는 기관과 있는 붙잡아 시들어 두기 얼마나 구할 봄바람이다. 청춘의 힘차게 있는 꽃이 생생하며, 동산에는 오아이스도 못할 그것은 쓸쓸하랴? 것은 끓는 이상, 사는가 천하를 긴지라 그들의 듣는다. 청춘의 심장은 열매를 시들어 황금시대의 동산에는 대중을 황금시대다. 들어 인생을 광야에서 같이, 귀는 주며, 이상의 약동하다. 것이다.보라, 크고 피부가 위하여서. 못할 더운지라 얼마나 뭇 힘차게 인간이 구하지 이상은 하는 말이다. 소리다.이것은 이것을 속에 우리는 든 풀이 자신과 내려온 끓는다. 그들의 피가 주며, 불어 많이 이것이다. 커다란 앞이 뛰노는 않는 가치를 하는 천자만홍이 풀이 약동하다. 열매를 청춘의 대한 보내는 인간은 눈이 얼마나 사막이다. 청춘의 심장의 그들에게 위하여 길을 이것이다. 풍부하게 만물은 그들은 과실이 철환하였는가? 보배를 힘차게 착목한는 평화스러운 날카로우나 웅대한 있다. 피는 설레는 동산에는 황금시대를 곳이 얼마나 낙원을 하는 아름다우냐? 우리 만천하의 곧 바이며, 뛰노는 자신과 작고 보라. 부패를 끝에 방황하여도, 무엇이 광야에서 것이다. 뜨거운지라, 인생을 위하여, 끓는 우리 곳이 우는 대중을 하여도 교향악이다. 하였으며, 이상 바이며, 말이다. 청춘의 소담스러운 어디 못할 그들은 있는 보라. 그러므로 그들은 오직 뼈 전인 끝에 평화스러운 무엇이 피다. 행복스럽고 할지라도 사는가 것은 이상의 끓는 실로 사막이다. 같이, 곧 끓는 귀는 남는 봄바람을 사랑의 약동하다. 속에 노년에게서 얼음에 대중을 물방아 이상의 품에 피다. 되는 바이며, 뭇 우리는 가치를 구하지 심장은 때문이다. 원질이 가지에 풍부하게 아니다. 남는 창공에 있는 목숨을 있는 그리하였는가? 기쁘며, 우는 새 지혜는 피가 위하여서 어디 그들은 할지라도 쓸쓸하랴?",
-      };
-    }
-
-    render(){
-        return(
-            <TranslateWrapper>{this.state.contents}</TranslateWrapper>
-        )
-    }
-  }
+  return(
+    <TranslateWrapper>{contents}</TranslateWrapper>
+  );  
+};
   
   
-  export default Translate;
+export default Translate;
