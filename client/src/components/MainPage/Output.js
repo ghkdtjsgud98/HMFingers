@@ -18,7 +18,10 @@ const Output = ({getTime2}) => {
   var [currentTime, setCurrentTime] = useState();
   const getTime = (t) => {
     setCurrentTime(t);
-  }
+    console.log("OP-getTime 작동o");
+
+    getTime2({t});
+  };
 
   const menuList = {
     0: <Script getTime={getTime}/>,
@@ -26,7 +29,8 @@ const Output = ({getTime2}) => {
     2: <Translate />
   };
 
-  getTime2({currentTime});
+  //getTime2({currentTime});
+  console.log("OP-currentTime : ", currentTime);
 
   return(
   <OutputBox>
