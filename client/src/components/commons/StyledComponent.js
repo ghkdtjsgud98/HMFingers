@@ -268,6 +268,7 @@ export const UploadOptionDateSelect = styled.div`
 export const UploadOptionDateInput = styled.input`
   height: 20px;
   width: 170px;
+  border-radius : 5px;
 `;
 
 export const DateText = styled.div`
