@@ -21,20 +21,18 @@ export const Script = ({getTime}) => {
 
   const onClickWord = (t) => {
     console.log("onClickWord : ", t);
-    getTime({t});
+    getTime(t);
   };
 
 
 
   return(
     <>
-      {/* <ScriptWrapper>{contents}</ScriptWrapper> */}
-
-      {/* //currentTime Test중 */}
 
       <ScriptWrapper>
-        {words.map(words => (<span>{words.word}</span>))}
 
+        {/* currentTime Test용 */}
+        {words.map(words => (<span>{words.word}</span>))}
         <button onClick={() => onClickWord(30)}>30초시작</button>
         <button onClick={() => onClickWord(60)}>60초시작</button>
         <br /><br />
