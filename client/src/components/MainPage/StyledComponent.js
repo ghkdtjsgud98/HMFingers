@@ -8,6 +8,8 @@ import { FiUpload } from "react-icons/fi"
 import { BsPersonCircle } from "react-icons/bs"
 import { GoPrimitiveDot } from "react-icons/go"
 
+import { BsDot } from "react-icons/bs"
+
 
 
 
@@ -96,6 +98,20 @@ export const SummaryWrapper = styled.div`
 export const SummaryWordsWrapper = styled.div`
   border-left: 1px solid #c4c4c4;
 `;
+export const SummaryWordsList = styled.div`
+  margin-left : 5px;
+  font-size : 20px;
+  font-weight : bold;
+  margin-top : 10px;
+  display : flex;
+`;
+export const SummaryWordsIcon = styled(BsDot)`
+  width: 36px;
+  height: 36px;
+  
+  color : black;
+`;
+
 
 export const TranslateWrapper = styled.div`
 `;
