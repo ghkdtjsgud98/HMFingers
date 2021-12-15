@@ -2,10 +2,8 @@ import React, { useEffect, useCallback, useState, Component } from 'react';
 import { Link, useHistory, Route } from 'react-router-dom';
 import {
   UpperBarBox,
-  UpperBoxUploadButton,
-  UpperBoxUploadIcon,
-  UpperBoxMeButton,
-  UpperBoxMeIcon,
+  UpperBoxLogoutButton,
+  LogoutIcon,
   TitleWrapper,
   SubTitle,
   Title,
@@ -24,10 +22,11 @@ const UpperBar = () => {
       </Link>
       <UploadOptionButton/>
 
-
-      <UpperBoxMeButton>
-        <UpperBoxMeIcon />
-      </UpperBoxMeButton>
+      <Link to='/Login'>
+        <UpperBoxLogoutButton>
+          <LogoutIcon />   
+        </UpperBoxLogoutButton>
+      </Link>
     </UpperBarBox>
     </>
   );
