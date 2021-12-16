@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { address } from '../../variables';
 import {
   RegisterPageBox,
@@ -21,7 +21,7 @@ import {
 } from './StyledComponent';
 
 const Register = () => {
-  // const history = useHistory();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
@@ -74,11 +74,11 @@ const Register = () => {
       username: username,
     };
 
-    // await axios.post(`${address}/auth/join`, body).then((res) => {
-    //   console.log(res.status);
-    //   if (res.status === 201) history.push('/login');
-    //   // if (res.status === 200) window.location = '/about';
-    // });
+    await axios.post(`${address}/register`, body).then((res) => {
+      console.log(res.status);
+      if (res.status === 201) navigate('/');
+      // if (res.status === 200) window.location = '/about';
+    });
 
   };
 
@@ -91,7 +91,7 @@ const Register = () => {
             <SubTitle>Catch Our Sound Make Our Script</SubTitle>
           </TitleWrapper>
         </Link>
-        <RegisterPageMainText>Register to Dokit</RegisterPageMainText>
+        <RegisterPageMainText>Register to COSMOS</RegisterPageMainText>
         <RegisterPageTextBox>
           <RegisterPageUsernameText>Username*</RegisterPageUsernameText>
           <RegisterPageUsernameInput

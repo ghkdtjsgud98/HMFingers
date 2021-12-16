@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { address } from '../../variables';
 import {
   LoginPageBox,
@@ -18,14 +18,14 @@ import {
   LoginPageSubText,
   LoginPageTextBox,
 } from './StyledComponent';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRemember, setIsRemember] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['rememberEmail']);
-  // const history = useHistory();
+  // const [cookies, setCookie, removeCookie] = useCookies(['rememberEmail']);
+  const navigate = useNavigate();
 
   const emailHandler = (e) => {
     e.preventDefault();
@@ -37,21 +37,21 @@ const LoginComponent = () => {
     setPassword(e.target.value);
   };
 
-  useEffect(() => {
-    if (cookies.rememberEmail !== undefined) {
-      setEmail(cookies.rememberEmail);
-      setIsRemember(true);
-    }
-  }, [cookies.rememberEmail]);
+  // useEffect(() => {
+  //   if (cookies.rememberEmail !== undefined) {
+  //     setEmail(cookies.rememberEmail);
+  //     setIsRemember(true);
+  //   }
+  // }, [cookies.rememberEmail]);
 
-  const rememberHandler = (e) => {
-    setIsRemember(e.target.checked);
-    if (e.target.checked) {
-      setCookie('rememberEmail', email, { maxAge: 2000 });
-    } else {
-      removeCookie('rememberEmail');
-    }
-  };
+  // const rememberHandler = (e) => {
+  //   setIsRemember(e.target.checked);
+  //   if (e.target.checked) {
+  //     setCookie('rememberEmail', email, { maxAge: 2000 });
+  //   } else {
+  //     removeCookie('rememberEmail');
+  //   }
+  // };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -61,13 +61,13 @@ const LoginComponent = () => {
       password: password,
     };
 
-    // await axios.post(`${address}/auth/login`, body).then((res) => {
-    //   const accessToken = 'Bearer ' + res.data.accessToken;
-    //   axios.defaults.headers.common['Authorization'] = accessToken;
-    //   localStorage.setItem('Authorization', accessToken);
-    //   if (res.status === 200) history.push('/main');
-    //   // if (res.status === 200) window.location = '/about';
-    // });
+    await axios.post(`${address}/auth/login`, body).then((res) => {
+      const accessToken = 'Bearer ' + res.data.accessToken;
+      axios.defaults.headers.common['Authorization'] = accessToken;
+      localStorage.setItem('Authorization', accessToken);
+      if (res.status === 200) navigate('/main');
+      // if (res.status === 200) window.location = '/about';
+    });
 
   };
 
