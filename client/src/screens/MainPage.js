@@ -6,16 +6,15 @@ import Output from '../components/MainPage/Output';
 import PlayBar from '../components/MainPage/PlayBar';
 
 const MainPage = () => {
-  
+
   return (
     <>
       <UpperBar />
       <PlayBar />
       <Output />
-      <FileHandling />
       <KeywordSearch />
+      <FileHandling />
     </>
   );
 };
-
 export default MainPage;

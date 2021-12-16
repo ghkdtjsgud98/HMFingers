@@ -1,13 +1,26 @@
 import React from 'react';
 import {
-  OutputBox
+  OutputBox,
+  TabWrapper,
+  TabElement,
+  ScriptWrapper,
+
 } from './StyledComponent';
 // import { Link } from 'react-router-dom';
 
 const Output = () => {
-  
+
   return (
-    <OutputBox/>
+    <OutputBox>
+      <TabWrapper>
+        <TabElement>SCRIPT</TabElement>
+        <TabElement>SUMMARY</TabElement>
+        <TabElement>TRANSLATE</TabElement>
+      </TabWrapper>
+      <ScriptWrapper>
+        //script
+      </ScriptWrapper>
+    </OutputBox>
   );
 };
 
