@@ -22,7 +22,7 @@ const UpperBar = () => {
       </Link>
       <UploadOptionButton/>
 
-      <Link to='/Login'>
+      <Link to='/'>
         <UpperBoxLogoutButton>
           <LogoutIcon />   
         </UpperBoxLogoutButton>
