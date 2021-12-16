@@ -2,6 +2,18 @@ import styled from 'styled-components';
 import { RiSettings3Line } from "react-icons/ri";
 
 
+
+
+import { FiUpload } from "react-icons/fi"
+import { BsPersonCircle } from "react-icons/bs"
+import { GoPrimitiveDot } from "react-icons/go"
+
+import { BsDot } from "react-icons/bs"
+
+
+
+
+
 {/************************Output************************/}
 export const OutputBox = styled.div`
   position: absolute;
@@ -86,6 +98,20 @@ export const SummaryWrapper = styled.div`
 export const SummaryWordsWrapper = styled.div`
   border-left: 1px solid #c4c4c4;
 `;
+export const SummaryWordsList = styled.div`
+  margin-left : 5px;
+  font-size : 20px;
+  font-weight : bold;
+  margin-top : 10px;
+  display : flex;
+`;
+export const SummaryWordsIcon = styled(BsDot)`
+  width: 36px;
+  height: 36px;
+  
+  color : black;
+`;
+
 
 export const TranslateWrapper = styled.div`
 `;
@@ -130,15 +156,172 @@ export const KeywordSearchInput = styled.input.attrs({
   margin-left : 10px;
   font-size : 20px;
 `;
-export const KeywordSearchSettingIcon = styled(RiSettings3Line)`
-  position: absolute;
+export const SearchSettingIcon = styled(RiSettings3Line)`
+ 
   width: 36px;
   height: 36px;
-  right: 6px;
-  margin : 8px 0;
-  cursor: pointer;
+  
   color : rgba(196, 196, 196, 1);
 `;
+
+export const SearchSettingButton = styled.button`
+  position : absolute;
+  
+  border : none;
+  background : none;
+
+
+
+  width: 36px;
+  height: 36px;
+  right: 10px;
+  margin : 8px 0;
+  cursor: pointer;
+`;
+
+
+
+{/************************SearchSettingModal************************/}
+
+export const ModalBackground = styled.div`
+    position: fixed;
+    width : 100%;
+    top : 80px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.5);
+
+    z-index : 9999;
+    
+`;
+
+export const KeywordSearchSettingModal = styled.div`
+  position: fixed;
+  width: 350px;
+  height: 300px;
+  top: 150px;
+  right: 50px;
+  background-color: white;
+  
+  box-sizing: border-box;
+  border: 1px solid #999999;
+  border-radius: 40px;
+  background: white;       
+  z-index : 9999;
+
+  display : flex;
+  flex-direction : column;
+  align-items : center;
+`;
+
+
+export const ModalTitle = styled.div`
+  position : relative;
+  width : 100%;
+  height : 30px;
+  top : 25px;
+  font-size : 28px;
+  font-weight : bold;
+  display : flex;
+  flex-direction : column;
+  align-items : center;
+`;
+
+export const ModalCloseButton = styled.span`
+  position : absolute;
+  width : 20px;
+  height : 40px;
+  right : 15px;
+  margin-bottom : 0px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+
+export const ContentUploadButton = styled.button`
+  position : absolute;
+  width : 100px;
+  height : 40px;
+
+  right : 20px;
+  bottom : 10px;
+  font-size : 18px;
+  font-weight : bold;
+  cursor: pointer;
+  border : none;
+  border-radius : 20px;
+  background: rgba(196, 196, 196, 1);
+  
+
+`;
+
+export const ModalContentsWrapper = styled.form`
+  width: 100%;
+  height : 250px;
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top : 5px;
+`;
+
+export const ModalContentsTitle = styled.div`
+  position : relative;
+  font-size: 16px;
+  font-weight : bold;
+  margin-top : 30px;
+  left : 20px;
+`;
+
+
+export const KeywordSearchSettingCheckInput = styled.input`
+
+`;
+
+
+export const KeywordSearchSettingDateBox = styled.div`
+  position : relative;
+  width : 100%;
+  height : 60px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top : 10px;
+
+`;
+
+export const KeywordSearchSettingDateSelect = styled.div`
+  position : relative;
+  //width: 100%;
+  height : 25px;
+  border: none;
+  
+  display : flex;
+  //padding-left: 5px; 
+  font-size : 18px;
+  font-weight : bold;
+  left : 70px;
+  margin-top : 20px;
+`;
+
+export const KeywordSearchSettingDateInput = styled.input`
+  position : absolute;
+  height: 25px;
+  width: 150px;
+  right : 90px;
+  border-bottom: 1px solid #000000;
+  border-radius : 5px;
+`;
+
+
+
+
+
+
+
 
 {/************************FileHandling************************/}
 export const FileHandlingBox = styled.div`
@@ -155,7 +338,7 @@ export const FileHandlingBox = styled.div`
   display : flex;
   flex-direction : column;
 
-  z-index : 1;
+  z-index : 0;
 `;
 export const FileWrapper = styled.div`
   position : relaitve;

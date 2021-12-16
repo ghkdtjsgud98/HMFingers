@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FiUpload } from "react-icons/fi"
-import { BsPersonCircle } from "react-icons/bs"
+import { GoSignOut } from "react-icons/go"
 import { GoPrimitiveDot } from "react-icons/go"
 import { BiCalendar } from "react-icons/bi"
 
@@ -61,7 +61,7 @@ export const UploadContentsDot = styled(GoPrimitiveDot)`
 `;
 
 
-export const UpperBoxMeButton = styled.button`
+export const UpperBoxLogoutButton = styled.button`
   position : fixed;
   width:50px;
   height:50px;
@@ -72,7 +72,8 @@ export const UpperBoxMeButton = styled.button`
   cursor: pointer;
 `;
 
-export const UpperBoxMeIcon = styled(BsPersonCircle)`
+export const LogoutIcon = styled(GoSignOut)`
+  margin-top : 3px;
   width: 50px;
   height: 50px;
   color : #646464;
@@ -268,6 +269,7 @@ export const UploadOptionDateSelect = styled.div`
 export const UploadOptionDateInput = styled.input`
   height: 20px;
   width: 170px;
+  border-radius : 5px;
 `;
 
 export const DateText = styled.div`
@@ -283,8 +285,3 @@ export const DateText = styled.div`
 
 `;
 
-// export const DateIcon = styled(BiCalendar)`
-//   position : absolute;
-//   width: 20px;
-//   height: 20px;
-// `;
