@@ -9,7 +9,7 @@ import cors from "cors";
 
 dotenv.config()
 
-var connection = mysql.createConnection(dbConfig)
+const app = express();
 
 const __dirname = path.resolve();
 
