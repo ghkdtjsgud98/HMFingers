@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useEffect, useCallback, useState, Component } from 'react';
+import { Link, useHistory, Route } from 'react-router-dom';
 import {
   UpperBarBox,
-  UpperBoxUploadIcon,
-  UpperBoxMeIcon,
+  UpperBoxLogoutButton,
+  LogoutIcon,
   TitleWrapper,
-  SubTitleWrapper,
-} from '../UpperBarStyle/StyledComponent';
+  SubTitle,
+  Title,
+} from './StyledComponent';
+import UploadOptionButton from './UploadOptionButton';
 
 const UpperBar = () => {
   return(
     <>
     <UpperBarBox>
-      <TitleWrapper>
-        COSMOS
-      </TitleWrapper>
-      <SubTitleWrapper>
-        Catch Our Sound Make Our Script
-      </SubTitleWrapper>
-      <UpperBoxUploadIcon />
-      <UpperBoxMeIcon />
+      <Link to='/main'>
+        <TitleWrapper>
+          <Title>COSMOS</Title>
+          <SubTitle>Catch Our Sound Make Our Script</SubTitle>
+        </TitleWrapper>
+      </Link>
+      <UploadOptionButton/>
+
+      <Link to='/'>
+        <UpperBoxLogoutButton>
+          <LogoutIcon />   
+        </UpperBoxLogoutButton>
+      </Link>
     </UpperBarBox>
     </>
   );
