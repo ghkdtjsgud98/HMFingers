@@ -1,6 +1,10 @@
 "use strict";
-import { dbConfig } from "../../../config/database.js";
 import mysql from "mysql";
+import path from "path";
+import { dbConfig } from "../../../config/database.js";
+import { convertAudioToScript } from "../../../modules/speechToText/speechToTextApi.js";
+
+const __dirname = path.resolve()
 
 const output = {
   home: (req, res) => {
@@ -10,6 +14,7 @@ const output = {
     res.render("home/login");
   },
   register: (req, res) => {
+    console.log('hi');
     res.render("home/register");
   },
 };
@@ -17,7 +22,6 @@ const output = {
 const process = {
   register: (req, res) => {
     var connection = mysql.createConnection(dbConfig);
-
     var sql = `SELECT * from Users where id = '${req.body.id}';`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
@@ -65,6 +69,19 @@ const process = {
       }
     });
   },
+  uploadAudio: async (req, res) => {
+    console.log('body: ', req.body, 'files: ', req.files);
+    const file = req.files.file; //  '요청메세지'.'files'.'폼태그input name 키값' 
+    console.log(file.name); // 파일의 파일명, 확장자 확인
+    console.log(file.type); // 파일의 타입 확인
+    // don't forget to delete all req.files when done -> 확인 필요.
+    const audioPath = __dirname + '/resources/' + file.name; // __dirname + '/modules/speechToText/' + 'testFile.wav';
+    console.log(audioPath); // file.name에 확장자 포함인지 확인
+    console.log(req);
+    const result = await convertAudioToScript(audioPath, audioPath.substring(audioPath.length - 3, audioPath.length));
+    console.log(result);
+    res.status(200).send('OK')
+  }
 };
 
 export default { output, process };
