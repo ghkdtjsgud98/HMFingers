@@ -1,12 +1,5 @@
 "use strict";
 
-const id = document.querySelector("#id"),
-  psword = document.querySelector("#psword"),
-  confirmPsword = document.querySelector("#confirm-psword"),
-  registerBtn = document.querySelector("#reg_btn");
-
-registerBtn.addEventListener("click", register);
-
 function register() {
   const req = {
     id: id.value,
