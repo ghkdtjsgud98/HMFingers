@@ -11,8 +11,8 @@ function App() {
     <>
       <GlobalStyle />
       <Routes>
-        <Route path='/' element={<LandingPage/>} exact />
-        <Route path='/login' element={<LoginPage/>} />
+        {/* <Route path='/' element={<LandingPage/>} exact /> */}
+        <Route path='/' element={<LoginPage/>} exact />
         <Route path='/register' element={<RegisterPage/>} />
         <Route path='/main' element={<MainPage/>} />
       </Routes>

@@ -1,17 +1,17 @@
 import React from 'react';
 import {
   KeywordSearchBox,
-  KeywordSearchSettingIcon,
   KeywordSearchInput,
-} from './StyledComponent';
+} from '../StyledComponent';
 // import { Link } from 'react-router-dom';
+import KeywordSearchSettingButton from './KeywordSearchSettingButton';
 
 const KeywordSearch = () => {
   return (
     <>
     <KeywordSearchBox>
       <KeywordSearchInput></KeywordSearchInput>
-      <KeywordSearchSettingIcon></KeywordSearchSettingIcon>
+      <KeywordSearchSettingButton />
     </KeywordSearchBox>
     </>
   );
