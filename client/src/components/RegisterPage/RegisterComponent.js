@@ -69,8 +69,9 @@ const Register = () => {
     }
 
     let body = {
-      email: email,
-      password: password,
+      id: email,
+      psword: password,
+      confirmPsword: password,
       username: username,
     };
 

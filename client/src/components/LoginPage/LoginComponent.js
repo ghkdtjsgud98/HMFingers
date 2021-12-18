@@ -57,8 +57,8 @@ const LoginComponent = () => {
     e.preventDefault();
 
     let body = {
-      email: email,
-      password: password,
+      id: email,
+      psword: password,
     };
 
     await axios.post(`${address}/auth/login`, body).then((res) => {
