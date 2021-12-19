@@ -42,6 +42,11 @@ const UploadOption = (props) => {
   const [filename, setFilename] = useState('');
   //const navigate = useNavigate();
 
+  const fileHandler = (e) => {
+    e.preventDefault();
+    setFile(e.target.value);
+  };
+
   const dateHandler = (e) => {
     e.preventDefault();
     setDate(e.target.value);
@@ -134,7 +139,7 @@ const UploadOption = (props) => {
                     accept=".wav"
                     value={file}
                     // onChange={(files) => setFile(files)}
-                    onchange={setFile}
+                    onchange={fileHandler}
                     required
                   />
                 </UploadOptionFileSelect>
