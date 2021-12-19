@@ -42,23 +42,20 @@ const UploadOption = (props) => {
   const [filename, setFilename] = useState('');
   //const navigate = useNavigate();
 
-  const fileHandler = (e) => {
-    e.preventDefault();
-    setFile(e.target.value);
-  };
-
   const dateHandler = (e) => {
     e.preventDefault();
     setDate(e.target.value);
+  };
 
-    //console.log(e.target.value);
+  const fileHandler = (e) => {
+    e.preventDefault();
+    setFile(e.target.files[0]);
+    console.log(file);
   };
 
   const filenameHandler = (e) => {
     e.preventDefault();
     setFilename(e.target.value);
-
-    //console.log(e.target.value);
   };
   
 
@@ -71,6 +68,18 @@ const UploadOption = (props) => {
       date: date,
     };
 
+    const audioSrc = window.URL.createObjectURL(file);
+    const data = new FormData()
+    data.append('file', audioSrc)
+    data.append('filename', filename);
+    data.append('date', date);
+
+    console.log(data);
+
+    // const data = new FormData();
+    // data.append('file', file);
+    // console.log(data);
+
     // await axios.post(`${address}/login`, body).then((res) => {
     //   const accessToken = 'Bearer ' + res.data.accessToken;
     //   axios.defaults.headers.common['Authorization'] = accessToken;
@@ -82,7 +91,7 @@ const UploadOption = (props) => {
     //   // if (res.status === 200) window.location = '/about';
     // });
 
-    await axios.post(`${address}/uploadAudio`, body).then((res) => {
+    await axios.post(`${address}/uploadAudio`, data).then((res) => {
 
       const accessToken = 'Bearer ' + res.data.accessToken;
       axios.defaults.headers.common['Authorization'] = accessToken;
@@ -137,9 +146,8 @@ const UploadOption = (props) => {
                   <UploadOptionFileInput 
                     type="file"              
                     accept=".wav"
-                    value={file}
-                    // onChange={(files) => setFile(files)}
-                    onchange={fileHandler}
+                    // value={file}
+                    onChange={fileHandler}
                     required
                   />
                 </UploadOptionFileSelect>
