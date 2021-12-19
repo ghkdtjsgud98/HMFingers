@@ -109,7 +109,7 @@ export const SubTitle = styled.div`
 // ModalCloseButton, 
 // ModalContentsWrapper,
 
-export const UploadOptionModal = styled.div`
+export const UploadOptionModal = styled.form`
   position: fixed;
   width: 350px;
   height: 350px;
@@ -168,7 +168,7 @@ export const ContentUploadButton = styled.button`
 
 `;
 
-export const ModalContentsWrapper = styled.form`
+export const ModalContentsWrapper = styled.div`
   width: 100%;
   height : 300px;
   position: absolute;
