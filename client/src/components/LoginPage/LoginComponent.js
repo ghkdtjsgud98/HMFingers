@@ -57,14 +57,17 @@ const LoginComponent = () => {
     e.preventDefault();
 
     let body = {
-      email: email,
-      password: password,
+      id: email,
+      psword: password,
     };
 
-    await axios.post(`${address}/auth/login`, body).then((res) => {
+    await axios.post(`${address}/login`, body).then((res) => {
       const accessToken = 'Bearer ' + res.data.accessToken;
       axios.defaults.headers.common['Authorization'] = accessToken;
       localStorage.setItem('Authorization', accessToken);
+
+      console.log(res.status);
+      
       if (res.status === 200) navigate('/main');
       // if (res.status === 200) window.location = '/about';
     });

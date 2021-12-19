@@ -69,14 +69,15 @@ const Register = () => {
     }
 
     let body = {
-      email: email,
-      password: password,
+      id: email,
+      psword: password,
+      confirmPsword: password,
       username: username,
     };
 
     await axios.post(`${address}/register`, body).then((res) => {
       console.log(res.status);
-      if (res.status === 201) navigate('/');
+      if (res.status === 200) navigate('/');
       // if (res.status === 200) window.location = '/about';
     });
 
