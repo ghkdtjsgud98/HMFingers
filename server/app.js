@@ -1,7 +1,5 @@
-import mysql from 'mysql'
 import express from 'express'
 import dotenv from 'dotenv'
-import { dbConfig } from './config/database.js'
 import bodyParser from "body-parser";
 import home from "./src/routes/home/index.js";
 import path from "path";

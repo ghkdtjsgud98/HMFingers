@@ -1,4 +1,7 @@
-import React, { forwardRef, useState, Component } from "react";
+import React, { useEffect, forwardRef, useState, Component } from "react";
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { address } from '../../variables';
 // import ReactDatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 
@@ -28,10 +31,6 @@ import {
     ContentUploadButton,
 
     UploadContentsDot,
-    
-    DateIcon,
-    DateText,
-
 } from "./StyledComponent";
 
 
@@ -39,19 +38,78 @@ const UploadOption = (props) => {
 
   const { isOpen, close } = props;
   const [file, setFile] = useState();
+  const [date, setDate] = useState('');
+  const [filename, setFilename] = useState('');
+  //const navigate = useNavigate();
+
+  const dateHandler = (e) => {
+    e.preventDefault();
+    setDate(e.target.value);
+  };
+
+  const fileHandler = (e) => {
+    e.preventDefault();
+    setFile(e.target.files[0]);
+    console.log(file);
+  };
+
+  const filenameHandler = (e) => {
+    e.preventDefault();
+    setFilename(e.target.value);
+  };
   
-  // const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-  //   //background : pink 임시지정해둠
-  //   <DateText onClick={onClick} ref={ref}>      
-  //     {value}
-  //   </DateText>     
-  // ));  
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    let body = {
+      file : file,
+      filename: filename,
+      date: date,
+    };
+
+    const audioSrc = window.URL.createObjectURL(file);
+    const data = new FormData()
+    data.append('file', audioSrc)
+    data.append('filename', filename);
+    data.append('date', date);
+
+    console.log(data);
+
+    // const data = new FormData();
+    // data.append('file', file);
+    // console.log(data);
+
+    // await axios.post(`${address}/login`, body).then((res) => {
+    //   const accessToken = 'Bearer ' + res.data.accessToken;
+    //   axios.defaults.headers.common['Authorization'] = accessToken;
+    //   localStorage.setItem('Authorization', accessToken);
+
+    //   console.log(res.status);
+      
+    //   if (res.status === 200) navigate('/main');
+    //   // if (res.status === 200) window.location = '/about';
+    // });
+
+    await axios.post(`${address}/uploadAudio`, data).then((res) => {
+
+      const accessToken = 'Bearer ' + res.data.accessToken;
+      axios.defaults.headers.common['Authorization'] = accessToken;
+      localStorage.setItem('Authorization', accessToken);
+
+      console.log(res.status);
+      console.log(res.body);
+      // if (res.status === 201) navigate('/');
+    });
+
+  };
+
   
   return (
     <>
       {isOpen ? ( 
         <ModalBackground>
-          <UploadOptionModal>
+          <UploadOptionModal onSubmit={submitHandler} >
             <ModalCloseButton onClick={close}> 
               &times;
             </ModalCloseButton>
@@ -68,12 +126,14 @@ const UploadOption = (props) => {
                       type="radio" 
                       name="file" 
                       value="File Selection" 
+                      required
                     />
                     File Selection
                     <UploadOptionCheckInput 
                       type="radio" 
                       name="file" 
                       value="Streaming"
+                      required
                     />
                     Streaming
                   </ModalContentsTitle>
@@ -84,9 +144,10 @@ const UploadOption = (props) => {
                   {/* multipart/form-data : 인코딩하지 않음, 파일이나 이미지를 서버로 전송할 때 주로 사용 */}
                   {/* <input type="file" onChange={(e) => {onFileUpload(e)}} /> */}
                   <UploadOptionFileInput 
-                    type="file" 
-                    accept=".mp3"  
-                    onChange={(files) => setFile(files)}
+                    type="file"              
+                    accept=".wav"
+                    // value={file}
+                    onChange={fileHandler}
                     required
                   />
                 </UploadOptionFileSelect>
@@ -98,7 +159,12 @@ const UploadOption = (props) => {
                   <UploadContentsDot />
                   File Nickname
                 </ModalContentsTitle>
-                <UploadOptionNicknameInput/>
+                <UploadOptionNicknameInput
+                  type='filename'
+                  value={filename}
+                  onChange={filenameHandler}
+                  required
+                />
               </UploadOptionNicknameBox>
 
               <UploadOptionDateBox>
@@ -110,17 +176,10 @@ const UploadOption = (props) => {
                   {/* <DateIcon /> */}
                   <UploadOptionDateInput 
                     type="date"
+                    value={date}
+                    onChange={dateHandler}
                     required
                   />
-                  {/* <ReactDatePicker
-                    selected={startDate}           
-                    onChange={(date) => setStartDate(date)}
-                    customInput={<ExampleCustomInput />}
-                    popperModifiers={{ preventOverflow: { enabled: true } }}
-                    popperPlacement='bottom'
-                    dateFormat='yyyy. MM. dd. eee'
-                    fixedHeight={true}
-                  /> */}
                 </UploadOptionDateSelect>
               </UploadOptionDateBox>
 
