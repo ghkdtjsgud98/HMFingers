@@ -8,14 +8,17 @@ const __dirname = path.resolve()
 
 const output = {
   home: (req, res) => {
-    res.render("home/index");
+
+	 console.log('home');
+   // res.render("home/index");
   },
   login: (req, res) => {
-    res.render("home/login");
+	  console.log('login');
+   // res.render("home/login");
   },
   register: (req, res) => {
     console.log('hi');
-    res.render("home/register");
+   // res.render("home/register");
   },
 };
 
@@ -27,7 +30,7 @@ const process = {
       if (err) {
         console.log(err);
       }
-      if (rows.length > 0) {
+      if (rows?.length > 0) {
         return res.json({
           success: false,
           msg: "이미 존재하는 아이디입니다.",
@@ -71,7 +74,7 @@ const process = {
   },
   uploadAudio: async (req, res) => {
     console.log('body: ', req.body, 'files: ', req.files);
-    const file = req.files.file; //  '요청메세지'.'files'.'폼태그input name 키값' 
+    const file = req.files?.file; //  '요청메세지'.'files'.'폼태그input name 키값' 
     console.log(file.name); // 파일의 파일명, 확장자 확인
     console.log(file.type); // 파일의 타입 확인
     // don't forget to delete all req.files when done -> 확인 필요.
