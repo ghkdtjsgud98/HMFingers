@@ -68,9 +68,9 @@ const UploadOption = (props) => {
       date: date,
     };
 
-    const audioSrc = window.URL.createObjectURL(file);
+    // const audioSrc = window.URL.createObjectURL(file);
     const data = new FormData()
-    data.append('file', audioSrc)
+    data.append('file', file);
     data.append('filename', filename);
     data.append('date', date);
 
@@ -145,7 +145,7 @@ const UploadOption = (props) => {
                   {/* <input type="file" onChange={(e) => {onFileUpload(e)}} /> */}
                   <UploadOptionFileInput 
                     type="file"              
-                    accept=".wav"
+                    accept=".mp3"
                     // value={file}
                     onChange={fileHandler}
                     required
