@@ -1,10 +1,12 @@
 "use strict";
 import express from "express";
+import path from "path";
 import multiparty from "connect-multiparty";
 import ctrl from "./home.ctrl.js";
 
 const router = express.Router();
-const multipartMiddleware = multiparty({ uploadDir: './resource'})
+const __dirname = path.resolve();
+const multipartMiddleware = multiparty({ uploadDir:__dirname + '/resources'})
 
 router.get("/login", ctrl.output.login);
 router.get("/", ctrl.output.home);
