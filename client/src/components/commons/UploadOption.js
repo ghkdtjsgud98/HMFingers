@@ -1,9 +1,7 @@
-import React, { UseEffect, forwardRef, useState, Component } from "react";
+import React, { useEffect, forwardRef, useState, Component } from "react";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { address } from '../../variables';
-import Loading from './Loading';
-
 // import ReactDatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 
@@ -44,8 +42,6 @@ const UploadOption = (props) => {
   const [filename, setFilename] = useState('');
   //const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(null);
-
   const dateHandler = (e) => {
     e.preventDefault();
     setDate(e.target.value);
@@ -62,46 +58,53 @@ const UploadOption = (props) => {
     setFilename(e.target.value);
   };
   
- 
+
   const submitHandler = async (e) => {
-    UseEffect( async () => {
-      e.preventDefault();
+    e.preventDefault();
 
-      // const audioSrc = window.URL.createObjectURL(file);
-      const data = new FormData()
-      data.append('file', file);
-      data.append('filename', filename);
-      data.append('date', date);
+    let body = {
+      file : file,
+      filename: filename,
+      date: date,
+    };
 
-      console.log(data);
+    const audioSrc = window.URL.createObjectURL(file);
+    const data = new FormData()
+    data.append('file', audioSrc)
+    data.append('filename', filename);
+    data.append('date', date);
 
+    console.log(data);
 
-      try {
-        setLoading(true);
+    // const data = new FormData();
+    // data.append('file', file);
+    // console.log(data);
+
+    // await axios.post(`${address}/login`, body).then((res) => {
+    //   const accessToken = 'Bearer ' + res.data.accessToken;
+    //   axios.defaults.headers.common['Authorization'] = accessToken;
+    //   localStorage.setItem('Authorization', accessToken);
+
+    //   console.log(res.status);
       
-        await axios.post(`${address}/uploadAudio`, data).then((res) => {
+    //   if (res.status === 200) navigate('/main');
+    //   // if (res.status === 200) window.location = '/about';
+    // });
 
-          const accessToken = 'Bearer ' + res.data.accessToken;
-          axios.defaults.headers.common['Authorization'] = accessToken;
-          localStorage.setItem('Authorization', accessToken);
+    await axios.post(`${address}/uploadAudio`, data).then((res) => {
 
-          console.log(res.status);
-          console.log(res.body);
-          // if (res.status === 201) navigate('/');
-          
-        })
-      } catch(e){
-        //에러 처리
-      }
-      
-      setLoading(false);
-      
-    
-  }, [])
-};
+      const accessToken = 'Bearer ' + res.data.accessToken;
+      axios.defaults.headers.common['Authorization'] = accessToken;
+      localStorage.setItem('Authorization', accessToken);
 
-  if (loading) return <Loading type="spin" color="gray" message={"Uploading"} />;
+      console.log(res.status);
+      console.log(res.body);
+      // if (res.status === 201) navigate('/');
+    });
 
+  };
+
+  
   return (
     <>
       {isOpen ? ( 
@@ -142,7 +145,7 @@ const UploadOption = (props) => {
                   {/* <input type="file" onChange={(e) => {onFileUpload(e)}} /> */}
                   <UploadOptionFileInput 
                     type="file"              
-                    accept=".mp3"
+                    accept=".wav"
                     // value={file}
                     onChange={fileHandler}
                     required
