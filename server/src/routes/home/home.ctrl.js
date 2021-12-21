@@ -78,9 +78,8 @@ const process = {
     console.log(file.name); // 파일의 파일명, 확장자 확인
     console.log(file.type); // 파일의 타입 확인
     // don't forget to delete all req.files when done -> 확인 필요.
-    const audioPath = __dirname + "/resources/" + file.name; // __dirname + '/modules/speechToText/' + 'testFile.wav';
+    const audioPath = file.path; // __dirname + '/modules/speechToText/' + 'testFile.wav';
     console.log(audioPath); // file.name에 확장자 포함인지 확인
-    console.log(req);
     const result = await convertAudioToScript(
       audioPath,
       audioPath.substring(audioPath.length - 3, audioPath.length)
