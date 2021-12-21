@@ -81,13 +81,6 @@ const process = {
     const audioPath = file.path;// file.path;
     console.log(audioPath); // file.name에 확장자 포함인지 확인
     const result = await convertAudioToScript(audioPath, audioPath.substring(audioPath.length - 3, audioPath.length));
-    const audioPath = __dirname + "/resources/" + file.name; // __dirname + '/modules/speechToText/' + 'testFile.wav';
-    console.log(audioPath); // file.name에 확장자 포함인지 확인
-    console.log(req);
-    const result = await convertAudioToScript(
-      audioPath,
-      audioPath.substring(audioPath.length - 3, audioPath.length)
-    );
     console.log(result);
     res.status(200).send("OK");
   },
