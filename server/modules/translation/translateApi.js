@@ -5,7 +5,7 @@ dotenv.config();
 
 const client = new Translate.v2.Translate({
   projectId: "strategic-hull-331715",
-  keyFilename: "/Users/user/Downloads/strategic-hull-331715-417b23f22a38.json",
+  keyFilename: "/home/ubuntu/gcloudCredentials/sttapikey.json",
 });
 
 export async function translation(text) {
