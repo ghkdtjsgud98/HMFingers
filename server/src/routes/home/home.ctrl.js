@@ -3,6 +3,7 @@ import mysql from "mysql";
 import path from "path";
 import { dbConfig } from "../../../config/database.js";
 import { convertAudioToScript } from "../../../modules/speechToText/speechToTextApi.js";
+import { getFileInstance } from "../../models/UserStorage.js";
 import { translation } from "../../../modules/translation/translateApi.js";
 import fs from "fs";
 
@@ -121,17 +122,20 @@ const process = {
     });
   },
   uploadAudio: async (req, res) => {
-    console.log("body: ", req.body, "files: ", req.files);
-    const file = req.files?.file; //  '요청메세지'.'files'.'폼태그input name 키값'
-    console.log(file.name); // 파일의 파일명, 확장자 확인
-    console.log(file.type); // 파일의 타입 확인
-    // don't forget to delete all req.files when done -> 확인 필요.
-    const audioPath = file.path; // file.path;
-    console.log(audioPath); // file.name에 확장자 포함인지 확인
+    if (req.files === undefined) {
+      res.status(400); // bad request는 400번
+    }
+
+    const file = getFileInstance(req.files.file)
+    const fileHashName = file.path.split("/")
+    
+
     const result = await convertAudioToScript(
-      audioPath,
-      audioPath.substring(audioPath.length - 3, audioPath.length)
+      file.path,
+      file.extension
     );
+
+    
     console.log(result);
 
     /* const pk = Math.floor(Math.random() * 10000);

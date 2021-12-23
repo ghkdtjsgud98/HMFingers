@@ -1,13 +1,14 @@
 import speech from "@google-cloud/speech";
 import recorder from "node-record-lpcm16";
 import dotenv from "dotenv";
-import fs from "fs";
 import {
   ENCODING_UNSPECIFIED,
   ENCODING_LINEAR16,
   LANGUAGE_CODE_KR,
 } from "../../common/constants.js";
 import { transFileToAudioBytes } from "../fileUtils/fileUtils.js";
+import { groupBy } from "../../common/utils.js";
+import fs from "fs";
 
 dotenv.config();
 
@@ -24,11 +25,11 @@ export async function convertAudioToScript(filePath, audioType) {
     content: audioBytes,
   };
   const config = {
-    encoding: audioType !== "wav" ? ENCODING_UNSPECIFIED : ENCODING_LINEAR16,
+    encoding: audioType === "mp3" ? ENCODING_UNSPECIFIED : ENCODING_LINEAR16,
     // .wav 확장자 파일의 sampleRateHertz 값. 후에 파일 인코딩 방식이 정해지면 변경 가능.
-    sampleRateHertz: 16000, // 44100,
+    sampleRateHertz: audioType === "wav" ? 44100 : 16000, // 44100,
     // 해당 파일의 channel 수. 파일에 따라 달라질 수 있으므로 검토 필요.
-    audioChannelCount: 2,
+    audioChannelCount: audioType === "wav" ? 2 : 1,
     enableSeparateRecognitionPerChannel: true,
     // 번역할 언어 설정.
     languageCode: LANGUAGE_CODE_KR,
@@ -44,10 +45,11 @@ export async function convertAudioToScript(filePath, audioType) {
   if (!response) {
     throw Error("no speech to text response error");
   }
-  const transcription = response.results
+  const resultsByChannelTag = groupBy(response.results, "channelTag");
+  const { firstKey, data } = resultsByChannelTag;
+  const transcription = data[firstKey]
     .map((result) => result.alternatives[0].transcript)
     .join("\n");
-  console.log(`Transcription: ${transcription}`);
   return transcription;
 }
 
