@@ -22,8 +22,8 @@ const output = {
     // res.render("home/register");
   },
   getlist: (req, res) => {
-    var connection = mysql.createConnection(dbConfig);
-    var sql = `SELECT * from Scripts where user_pk = '${req.body.user_pk}';`;
+    const connection = mysql.createConnection(dbConfig);
+    const sql = `SELECT * from Scripts where user_pk = ${req.query.user_pk};`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
         console.log(err);
