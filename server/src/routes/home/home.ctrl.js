@@ -48,14 +48,13 @@ const output = {
   },
 
   getfile: (req, res) => {
-    var connection = mysql.createConnection(dbConfig);
-    var sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
+    const sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
         console.log(err);
       }
       if (rows?.length > 0) {
-        fs.readFile(rows[0].path, "utf8", function (err, data) {
+        fs.readFile(__dirname + rows[0].path, "utf8", function (err, data) {
           console.log(data);
           return res.json({
             success: true,
@@ -146,7 +145,7 @@ const process = {
     const { user_pk = 2255, filename, date } = req.body;
     const pk = Math.floor(Math.random() * 10000);
 
-    const sql = `INSERT INTO Scripts VALUES (${pk},${user_pk}, "resources/${fileHashName}_script.json","${filename}","${date}");`;
+    const sql = `INSERT INTO Scripts VALUES (${pk},${user_pk}, ${scriptPath},"${filename}","${date}");`;
 
     connection.query(sql, function (err, rows, fields){
       if (err) {
