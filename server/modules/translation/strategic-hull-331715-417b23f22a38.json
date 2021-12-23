@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "strategic-hull-331715",
+  "private_key_id": "417b23f22a386563a57bef933dbf9fc9167da2cb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTH6T0aveEAf0y\noGFW7Hg6WipiGWnMHz0r7f4fLqY/f0QLL7u3MrDLP4jVCKKRkMzadYvbO0Ns9iuX\n/v6noWD0puP8QRP31p6OGABMm7HCVBazH2es6PjKAck0jNqksyXrXrOT3pmIxLvi\nh0FRpv/+BJ/w697VWwwJjkMBOKiLa/e6GIYRtYVi1u83pm84cZWurwakmME8qjki\nSyHfNadhzuLYfGBaY3EWhMru2h9KmmE8xFTyOSOlqxIrMwXGJ8BfZQF3Gf9NeBxk\nQOqhse3hoHMzETqRi/RDx5O60WaIo1dU4xJqosrn+1pWUF/JGt6PrMxafnCAS5Bh\n5tNvXkZNAgMBAAECggEAC1gBQ6YWXorCJrI6CLLz/XlSxaqakKktCZXkDZuIEJQE\np+/h+i9IaI36tYJH7zevNMhpbKzRK/hI0gXq0OmkOAEE8aIy3HeKVWrcuUEJsBNX\nP5CfFXSpyXuHFW0Wt7rDKCkSemN/hGXDDUzkfuqmM+kztCeNoDvKzcijDlxo/J9b\nfLAM3EUHxZXMg1mXjKHMrB14jNnSwMABH3zfxZmW1r6cgw1XSsg0F2C2mAl9Zjxz\nxiz/eMC1FouQJBa84Av2tnByfn2ho9KxNi38a8zpHW2CGo7u0bsxJp1F/srY1tfp\nxIO2fKIqiU7yjWBGiZUJolf8h1ZMktzPD3+xOiYvgQKBgQDzMnfCzlbiStX/Y57D\nPV3TtbVbuNiz/4IYPVMMqBTLkKWoF5011mJouY+MUsTcsGeHtj5aaDAe/2bvxZnf\nz57XUwwbv4jJEW1RQF+odAwif3PNNE1EP4E2tIuSscBW+nh3MZKWFwDMKhdk5Xgo\nCjbRxf2ZcrStMbmzVg94x+3BxQKBgQDePO0hXKDvrK58+d/pkL2WHdkMwFh1i6p2\n0F77iseNLhx9CBRn3YKFJXQuLGkAtTSLmBvpQTm9EgIfIF9nMLsEmKucON3gV9Z4\nrwl9kLaYITuDYqDFtXIm/Prq7g7bq5SVwl7ngmdpNl4B6/ARzocl8D4o+HLq3jiL\nmaXdktXi6QKBgH7I0rKWS6lRhlrMHpp+RYn3cwLMTP0ZuULVxZQVlDHDyPjmxqio\niUk7Y+Ctzb+Xn4Gausr7AgtG7u0VQPDzFkX/H5LfuXnJQgpX2wbA6QqbE03pdFae\nHMjeOt1RGYq+rUrGZzsj5uCJGQUatBd7q7SU2W7D4/lesQcTWKGI6SRZAoGBAJDP\ngnTKttN14fztlUnMVr0KlfQJIZr2dw0Umc+ujnkgItAWA7XqULIRxbKQnZsoeCS9\n6PIE3mqk4V0G6yOCTVqhYLFbHLiig83/wF9hfJmEjhL+oWQy5z8geR+8H1Jka11q\nWgzgnCGim38FDlmMCeRetyJbQgZo5s+QPtQyacyBAoGBAIoKIT/TPi5yKWvrUUZo\nPyF/IFTBfzMA0Bi49BeZogzoCMBUrgTX21WGd9jE2qgTi8+F5hEZCgEFCdAzezNA\ntmu2huMUDXafGF1Z5uQ80wjzTXSQxkdnHBFxbP5pzCagIArBP7czYL9okbHU5/P0\nAF4znACOgC1jWP2bMcuzDNdy\n-----END PRIVATE KEY-----\n",
+  "client_email": "cosmos@strategic-hull-331715.iam.gserviceaccount.com",
+  "client_id": "117744364523506627684",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cosmos%40strategic-hull-331715.iam.gserviceaccount.com"
+}
