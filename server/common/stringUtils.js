@@ -18,6 +18,13 @@ export const groupBy = function (data, key) {
   return {
     firstKey: keys[0],
     data: result,
-  }
+  };
 };
 
+export const getHashFileName = (filename) => {
+  const arr = filename.split("/");
+  if (arr.length === 0) {
+    return undefined;
+  }
+  return arr[arr.length - 1].substring(0, arr[arr.length - 1].length - 4);
+}

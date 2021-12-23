@@ -1,13 +1,16 @@
 "use strict";
 import mysql from "mysql";
 import path from "path";
+import fs from "fs";
 import { dbConfig } from "../../../config/database.js";
 import { convertAudioToScript } from "../../../modules/speechToText/speechToTextApi.js";
 import { getFileInstance } from "../../models/UserStorage.js";
 import { translation } from "../../../modules/translation/translateApi.js";
-import fs from "fs";
+import { getHashFileName } from "../../../common/stringUtils.js";
+import { storeLocalScript } from "../../../common/fileUtils.js";
 
 const __dirname = path.resolve();
+const connection = mysql.createConnection(dbConfig);
 
 const output = {
   home: (req, res) => {
@@ -127,16 +130,17 @@ const process = {
     }
 
     const file = getFileInstance(req.files.file)
-    const fileHashName = file.path.split("/")
+    const fileHashName = getHashFileName(file.path);
     
-
-    const result = await convertAudioToScript(
+    // STT 수행
+    const script = await convertAudioToScript(
       file.path,
       file.extension
     );
-
+    // 결과를 local에 json으로 저장. 오디오 이름에 _script 붙임.
+    storeLocalScript(JSON.stringify({ data: script }), fileHashName);
     
-    console.log(result);
+    console.log(script);
 
     /* const pk = Math.floor(Math.random() * 10000);
 

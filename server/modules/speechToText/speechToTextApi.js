@@ -6,8 +6,8 @@ import {
   ENCODING_LINEAR16,
   LANGUAGE_CODE_KR,
 } from "../../common/constants.js";
-import { transFileToAudioBytes } from "../fileUtils/fileUtils.js";
-import { groupBy } from "../../common/utils.js";
+import { transFileToAudioBytes } from "../../common/fileUtils.js";
+import { groupBy } from "../../common/stringUtils.js";
 import fs from "fs";
 
 dotenv.config();
@@ -16,15 +16,9 @@ const client = new speech.SpeechClient({
   projectId: process.env.GCP_PROJECT_ID,
 });
 
-export async function convertAudioToScript(filePath, audioType) {
-  // audio 파일을 bytes string으로 변환
-  const audioBytes = transFileToAudioBytes(filePath);
-
-  // The audio file's encoding, sample rate in hertz, and BCP-47 language code
-  const audio = {
-    content: audioBytes,
-  };
-  const config = {
+const STTConfig = (audioType) => {
+  return {
+    enableWordTimeOffsets: true,
     encoding: audioType === "mp3" ? ENCODING_UNSPECIFIED : ENCODING_LINEAR16,
     // .wav 확장자 파일의 sampleRateHertz 값. 후에 파일 인코딩 방식이 정해지면 변경 가능.
     sampleRateHertz: audioType === "wav" ? 44100 : 16000, // 44100,
@@ -34,9 +28,21 @@ export async function convertAudioToScript(filePath, audioType) {
     // 번역할 언어 설정.
     languageCode: LANGUAGE_CODE_KR,
   };
+}
+
+export async function convertAudioToScript(filePath, audioType) {
+  // audio 파일을 bytes string으로 변환
+  console.log(filePath)
+  const audioBytes = transFileToAudioBytes(filePath);
+
+  // The audio file's encoding, sample rate in hertz, and BCP-47 language code
+  const audio = {
+    content: audioBytes,
+  };
+
   const request = {
     audio: audio,
-    config: config,
+    config: STTConfig(audioType),
   };
 
   // Detects speech in the audio file
@@ -48,7 +54,24 @@ export async function convertAudioToScript(filePath, audioType) {
   const resultsByChannelTag = groupBy(response.results, "channelTag");
   const { firstKey, data } = resultsByChannelTag;
   const transcription = data[firstKey]
-    .map((result) => result.alternatives[0].transcript)
+    .map((result) => {
+      console.log(result.alternatives[0].words)
+      result.alternatives[0].words.forEach(wordInfo => {
+        // NOTE: If you have a time offset exceeding 2^32 seconds, use the
+        // wordInfo.{x}Time.seconds.high to calculate seconds.
+        const startSecs =
+          `${wordInfo.startTime.seconds}` +
+          '.' +
+          wordInfo.startTime.nanos / 100000000;
+        const endSecs =
+          `${wordInfo.endTime.seconds}` +
+          '.' +
+          wordInfo.endTime.nanos / 100000000;
+        console.log(`Word: ${wordInfo.word}`);
+        console.log(`\t ${startSecs} secs - ${endSecs} secs`);
+      });
+      return result.alternatives[0].transcript;
+    })
     .join("\n");
   return transcription;
 }

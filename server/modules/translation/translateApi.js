@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const client = new Translate.v2.Translate({
-  projectId: "strategic-hull-331715",
+  projectId: process.env.GCP_PROJECT_ID,
   keyFilename: "/home/ubuntu/gcloudCredentials/sttapikey.json",
 });
 
