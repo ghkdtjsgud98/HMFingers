@@ -131,6 +131,7 @@ const process = {
 
     const file = getFileInstance(req.files.file)
     const fileHashName = getHashFileName(file.path);
+    const scriptPath = __dirname + '/resources/' + fileHashName + '_script.json';
     
     // STT 수행
     const script = await convertAudioToScript(
@@ -138,28 +139,29 @@ const process = {
       file.extension
     );
     // 결과를 local에 json으로 저장. 오디오 이름에 _script 붙임.
-    storeLocalScript(JSON.stringify({ data: script }), fileHashName);
+    storeLocalScript(scriptPath, script);
     
     console.log(script);
+    console.log(req.body);
+    const { user_pk = 2255, filename, date } = req.body;
+    const pk = Math.floor(Math.random() * 10000);
 
-    /* const pk = Math.floor(Math.random() * 10000);
+    const sql = `INSERT INTO Scripts VALUES (${pk},${user_pk}, "resources/${fileHashName}_script.json","${filename}","${date}");`;
 
-    var connection = mysql.createConnection(dbConfig);
-    var sql = `INSERT INTO Scripts VALUES (${pk},${req.body.user_pk},"${scriptPath}","${file.name}","${req.body.date}");INSERT INTO Audios VALUES (${pk},"${audioPath}","${file.name}","${req.body.date}",${req.body.user_pk});`;
     connection.query(sql, function (err, rows, fields){
       if (err) {
-        console.log(err);
-      }
-      if (rows?.length > 0) {
-        res.status(200).send("OK");
-      } else {
-        console.log(req.body);
+        console.log(err, req.body);
         return res.json({
           success: false,
           msg: "업로드에 실패했습니다.",
         });
+      } else {
+        return res.json({
+          success: true,
+          msg: "업로드 성공.",
+        });
       }
-    })*/
+    });
   },
 };
 

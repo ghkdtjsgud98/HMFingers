@@ -14,6 +14,6 @@ export const transFileToAudioBytes = (filePath) => {
 }
 
 /** script 형식은 json 파일, filename으로 path를 설정하여 저장한다. */
-export const storeLocalScript = (script, filename) => {
-  fs.writeFileSync(__dirname + '/resources/' + filename + '_script.json', script);
+export const storeLocalScript = (path, script) => {
+  fs.writeFileSync(path, JSON.stringify({ data: script }));
 }
