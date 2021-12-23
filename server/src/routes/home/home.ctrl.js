@@ -45,7 +45,7 @@ const output = {
 
   getfile: (req, res) => {
     var connection = mysql.createConnection(dbConfig);
-    var sql = `SELECT * from Scripts where script_id = '${req.body.script_id}';`;
+    var sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
         console.log(err);
