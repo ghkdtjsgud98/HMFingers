@@ -46,7 +46,6 @@ const output = {
       }
     });
   },
-
   getfile: (req, res) => {
     const sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
     connection.query(sql, function (err, rows, fields) {
@@ -56,9 +55,13 @@ const output = {
       if (rows?.length > 0) {
         fs.readFile(__dirname + rows[0].path, "utf8", function (err, data) {
           console.log(data);
+          // translated 된 파일 원할 때, query에 language option 추가
+          const translatedScript = await translation(data);
+          // 번역된 파일 없으면 만들어주고, 있으면 해당 파일을 data response로 내려줌.
+          // const sql = `INSERT INTO Translates VALUES (${pk}, "nation_code", ${user_pk}, "${scriptPath}","${filename}","${date}", ${pk});`
           return res.json({
             success: true,
-            content: data,
+            content: translatedScript,
           });
         });
       } else {
@@ -130,7 +133,7 @@ const process = {
 
     const file = getFileInstance(req.files.file)
     const fileHashName = getHashFileName(file.path);
-    const scriptPath = __dirname + '/resources/' + fileHashName + '_script.json';
+    const scriptPath = "/resources/" + fileHashName + "_script.json";
     
     // STT 수행
     const script = await convertAudioToScript(
@@ -141,11 +144,13 @@ const process = {
     storeLocalScript(scriptPath, script);
     
     console.log(script);
+    
     console.log(req.body);
     const { user_pk = 2255, filename, date } = req.body;
     const pk = Math.floor(Math.random() * 10000);
-
-    const sql = `INSERT INTO Scripts VALUES (${pk},${user_pk}, ${scriptPath},"${filename}","${date}");`;
+    // audio insert 추가
+    const sql = `INSERT INTO Scripts VALUES (${pk}, ${user_pk}, "${scriptPath}","${filename}","${date}");`+
+        `INSERT INTO Audios VALUES (${pk},"${file.path}","${filename}","${date}",${user_pk});` 
 
     connection.query(sql, function (err, rows, fields){
       if (err) {
