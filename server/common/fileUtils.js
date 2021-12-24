@@ -17,3 +17,8 @@ export const transFileToAudioBytes = (filePath) => {
 export const storeLocalScript = (path, script) => {
   fs.writeFileSync(__dirname + path, JSON.stringify({ data: script }));
 }
+
+export const getLocalScriptToJson = (path) => {
+  const result = fs.readFileSync(__dirname + path, "utf8");
+  return JSON.parse(result);
+}

@@ -1,13 +1,13 @@
 "use strict";
 import mysql from "mysql";
 import path from "path";
-import fs from "fs";
+import _ from "lodash";
 import { dbConfig } from "../../../config/database.js";
 import { convertAudioToScript } from "../../../modules/speechToText/speechToTextApi.js";
 import { getFileInstance } from "../../models/UserStorage.js";
-import { translation } from "../../../modules/translation/translateApi.js";
+import { translateScript } from "../../../modules/translation/translateApi.js";
 import { getHashFileName } from "../../../common/stringUtils.js";
-import { storeLocalScript } from "../../../common/fileUtils.js";
+import { getLocalScriptToJson, storeLocalScript } from "../../../common/fileUtils.js";
 
 const __dirname = path.resolve();
 const connection = mysql.createConnection(dbConfig);
@@ -53,17 +53,13 @@ const output = {
         console.log(err);
       }
       if (rows?.length > 0) {
-        fs.readFile(__dirname + rows[0].path, "utf8", function (err, data) {
-          console.log(data);
-          // translated 된 파일 원할 때, query에 language option 추가
-          const translatedScript = await translation(data);
-          // 번역된 파일 없으면 만들어주고, 있으면 해당 파일을 data response로 내려줌.
-          // const sql = `INSERT INTO Translates VALUES (${pk}, "nation_code", ${user_pk}, "${scriptPath}","${filename}","${date}", ${pk});`
+        const data = getLocalScriptToJson(rows[0].path);
+
+          console.log('getFile data: ', data);
           return res.json({
             success: true,
-            content: translatedScript,
+            content: data,
           });
-        });
       } else {
         return res.json({
           success: false,
@@ -72,12 +68,45 @@ const output = {
       }
     });
   },
+  getTranslatedFile: (req, res) => {
+    const { origin_script_id, nation_code } = req.query;
+
+    connection.query(`SELECT path, nick_name, create_date from Translates where origin_script_id = ${origin_script_id} and nation_code = "${nation_code}"`,
+      function (err, rows, fields) {
+        if (err) {
+          console.error(err)
+          throw Error('query failed at getTranslatedFile')
+        }
+
+        if (_.isEmpty(rows)) {
+          console.log(rows)
+          return res.json({
+            success: false,
+            msg: "잘못된 origin script id 입니다.",
+          });
+        }
+
+        if (rows?.length > 0) {
+          const { path, nick_name, create_date } = rows[0];
+          const data = getLocalScriptToJson(path);
+          return res.json({
+            success: true,
+            content: {
+              ...data,
+              nick_name: nick_name,
+              create_date: create_date,
+            }
+          });
+        }
+      }
+    );
+
+  },
 };
 
 const process = {
   register: (req, res) => {
-    var connection = mysql.createConnection(dbConfig);
-    var sql = `SELECT * from Users where id = '${req.body.id}';`;
+    const sql = `SELECT * from Users where id = '${req.body.id}';`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
         console.log(err);
@@ -105,8 +134,7 @@ const process = {
     });
   },
   login: (req, res) => {
-    var connection = mysql.createConnection(dbConfig);
-    var sql = `SELECT * from Users where id = '${req.body.id}' and password = '${req.body.psword}';`;
+    const sql = `SELECT * from Users where id = '${req.body.id}' and password = '${req.body.psword}';`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
         console.log(err);
@@ -167,6 +195,32 @@ const process = {
       }
     });
   },
+  uploadTranslatedScript: async (req, res) => {
+    const { nation_code, user_pk, nick_name, create_date, origin_script_id, data } = req.body
+    const pk = Math.floor(Math.random() * 10000);
+    const result = await translateScript(data, nation_code);
+    const scriptPath = `/resources/${origin_script_id}_translated.json`;
+
+    storeLocalScript(scriptPath, result);
+
+    const sql = `INSERT INTO Translates VALUES (${pk}, "${nation_code}", 2255, "${scriptPath}", "${nick_name}", "${create_date}", ${origin_script_id});`
+
+    connection.query(sql, function (err, rows, fields){
+      if (err) {
+        console.log(err, req.body);
+        return res.json({
+          success: false,
+          msg: "업로드에 실패했습니다.",
+        });
+      } else {
+        return res.json({
+          success: true,
+          msg: "업로드 성공.",
+        });
+      }
+    });
+
+  }
 };
 
 export default { output, process };
