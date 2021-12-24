@@ -12,10 +12,11 @@ router.get("/login", ctrl.output.login);
 router.get("/", ctrl.output.home);
 router.get("/register", ctrl.output.register);
 router.get("/getlist", (req, res) => ctrl.output.getlist(req, res));
-router.get(
-  "/getfile",
-  multipartMiddleware,
-  (req, res) => ctrl.output.getfile(req, res)
+router.get("/getfile", multipartMiddleware, (req, res) =>
+  ctrl.output.getfile(req, res)
+);
+router.get("/getaudio", multipartMiddleware, (req, res) =>
+  ctrl.output.getaudio(req, res)
 );
 
 router.post("/login", ctrl.process.login);
