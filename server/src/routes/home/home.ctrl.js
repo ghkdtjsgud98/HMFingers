@@ -72,6 +72,40 @@ const output = {
       }
     });
   },
+
+  getaudio: (res, req) => {
+    const sql = `SELECT * from Audios where script_id = '${req.query.script_id}';`;
+    connection.query(sql, function (err, rows, fields) {
+      if (err) {
+        console.log(err);
+      } else {
+        const stat = fs.statSync(__dirname + rows[0].path);
+        const fileSize = stat.size;
+        const range = req.query.range; // req.headers.range 를 req.query.range 로 변경
+
+        if (!range) {
+          // 구간지정 안했을때
+          const header = { "Content-Type": "audio/mpeg" };
+          res.writeHead(200, header);
+          res.end();
+        } else {
+          // 구간지정했을때(프로그레스바로 스킵했을때)
+          const parts = range.replace(/bytes=/, "").split("-");
+          const start = parseInt(parts[0], 10); // 시작 포인트
+          const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1; // 끝 포인트
+          const header = {
+            "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+            "Accept-Ranges": "bytes",
+            "Content-Type": "audio/mpeg",
+            "Content-Length": fileSize,
+          };
+          res.writeHead(200, header);
+          const readStream = fs.createReadStream(__dirname + rows[0].path);
+          readStream.pipe(res);
+        }
+      }
+    });
+  },
 };
 
 const process = {
@@ -131,28 +165,26 @@ const process = {
       res.status(400); // bad request는 400번
     }
 
-    const file = getFileInstance(req.files.file)
+    const file = getFileInstance(req.files.file);
     const fileHashName = getHashFileName(file.path);
     const scriptPath = "/resources/" + fileHashName + "_script.json";
-    
+
     // STT 수행
-    const script = await convertAudioToScript(
-      file.path,
-      file.extension
-    );
+    const script = await convertAudioToScript(file.path, file.extension);
     // 결과를 local에 json으로 저장. 오디오 이름에 _script 붙임.
     storeLocalScript(scriptPath, script);
-    
+
     console.log(script);
-    
+
     console.log(req.body);
     const { user_pk = 2255, filename, date } = req.body;
     const pk = Math.floor(Math.random() * 10000);
     // audio insert 추가
-    const sql = `INSERT INTO Scripts VALUES (${pk}, ${user_pk}, "${scriptPath}","${filename}","${date}");`+
-        `INSERT INTO Audios VALUES (${pk},"${file.path}","${filename}","${date}",${user_pk});` 
+    const sql =
+      `INSERT INTO Scripts VALUES (${pk}, ${user_pk}, "${scriptPath}","${filename}","${date}");` +
+      `INSERT INTO Audios VALUES (${pk},"${file.path}","${filename}","${date}",${user_pk});`;
 
-    connection.query(sql, function (err, rows, fields){
+    connection.query(sql, function (err, rows, fields) {
       if (err) {
         console.log(err, req.body);
         return res.json({
