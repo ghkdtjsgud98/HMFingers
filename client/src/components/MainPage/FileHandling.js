@@ -9,7 +9,8 @@ import {
 } from './StyledComponent';
 // import { Link } from 'react-router-dom';
 
-const FileHandling = () => {
+// props: getScriptId
+const FileHandling = (props) => {
 
   var [FileList, setFileList] = useState([]);
   var body = {"user_pk": localStorage.getItem("user_pk")};
@@ -21,10 +22,12 @@ const FileHandling = () => {
       });
     };
     axiosGet();
+
+    console.log(body)
+    console.log(FileList);
+
   },[]);
 
-  console.log(body)
-  console.log(FileList);
 
   const FileListElementCreator = ({FileList}) => {
 
@@ -38,10 +41,18 @@ const FileHandling = () => {
     );
   }
 
+  const onClickFile = (e, scriptId) => {
+    e.preventDefault();
+    // console.log("fh", scriptId);
+    props.getScriptId(scriptId);
+  }
+
   return (
     <>
     <FileHandlingBox>
-      <FileListElementCreator FileList={FileList}></FileListElementCreator>
+      {/* <FileListElementCreator FileList={FileList}></FileListElementCreator> */}
+      <span onClick={(e) => onClickFile(e, 123)}>TEST</span>
+      <span onClick={(e) => onClickFile(e, 345)}>TEST</span>
     </FileHandlingBox>
     </>
   );

@@ -11,24 +11,22 @@ import Translate from './Translate';
 import Summary from './Summary';
 // import { Link } from 'react-router-dom';
 
-
-const Output = ({getTime2}) => {
+// props: getTime2, scriptId
+const Output = (props) => {
 
   var [menu, setMenu] = useState(0);
-  var [currentTime, setCurrentTime] = useState();
-  const getTime = (t) => {
-    setCurrentTime(t);
-    // console.log("OP-getTime 작동o");
 
-    getTime2({t});
+  const getTime = (t) => {
+    props.getTime(t);
   };
 
   const menuList = {
-    0: <Script getTime={getTime}/>,
+    0: <Script getTime={getTime} scriptId={props.scriptId}/>,
     1: <Summary />,
     2: <Translate />
   };
-  // console.log("OP-currentTime : ", currentTime);
+  // console.log("op", currentTime);
+  // console.log("op", props.scriptId);
 
   return(
   <OutputBox>
