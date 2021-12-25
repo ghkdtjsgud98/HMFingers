@@ -26,4 +26,8 @@ router.post(
   multipartMiddleware,
   async (req, res) => await ctrl.process.uploadAudio(req, res)
 );
+router.post(
+  "/uploadTranslatedScript",
+  async (req, res) => await ctrl.process.uploadTranslatedScript(req, res)
+);
 export default router;

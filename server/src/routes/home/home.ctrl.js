@@ -201,9 +201,6 @@ const process = {
     // 결과를 local에 json으로 저장. 오디오 이름에 _script 붙임.
     storeLocalScript(scriptPath, script);
 
-    console.log(script);
-
-    console.log(req.body);
     const { user_pk = 2255, filename, date } = req.body;
     const pk = Math.floor(Math.random() * 10000);
     // audio insert 추가

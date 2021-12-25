@@ -51,29 +51,18 @@ export async function convertAudioToScript(filePath, audioType) {
   if (!response) {
     throw Error("no speech to text response error");
   }
-  const resultsByChannelTag = groupBy(response.results, "channelTag");
-  const { firstKey, data } = resultsByChannelTag;
+  const { firstKey, data } = groupBy(response.results, "channelTag");
   const transcription = data[firstKey]
-    .map((result) => {
-      console.log(result.alternatives[0].words)
-      result.alternatives[0].words.forEach(wordInfo => {
-        // NOTE: If you have a time offset exceeding 2^32 seconds, use the
-        // wordInfo.{x}Time.seconds.high to calculate seconds.
-        const startSecs =
-          `${wordInfo.startTime.seconds}` +
-          '.' +
-          wordInfo.startTime.nanos / 100000000;
-        const endSecs =
-          `${wordInfo.endTime.seconds}` +
-          '.' +
-          wordInfo.endTime.nanos / 100000000;
-        console.log(`Word: ${wordInfo.word}`);
+    .map((result, index) => {
+      /* result.alternatives[0].words.forEach(wordInfo => {
+        NOTE: If you have a time offset exceeding 2^32 seconds, use the
+        wordInfo.{x}Time.seconds.high to calculate seconds.
         console.log(`\t ${startSecs} secs - ${endSecs} secs`);
       });
-      return result.alternatives[0].transcript;
+      */
+      return { index: index, transcript: result.alternatives[0].transcript, words: result.alternatives[0].words };
     })
-    .join("\n");
-  return transcription;
+  return JSON.stringify(transcription);
 }
 
 export const convertLocalStreamingAudioToText = async () => {
