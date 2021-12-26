@@ -6,13 +6,28 @@ import ctrl from "./home.ctrl.js";
 
 const router = express.Router();
 const __dirname = path.resolve();
-const multipartMiddleware = multiparty({ uploadDir:__dirname + '/resources'})
+const multipartMiddleware = multiparty({ uploadDir: __dirname + "/resources" });
 
 router.get("/login", ctrl.output.login);
 router.get("/", ctrl.output.home);
 router.get("/register", ctrl.output.register);
+router.get("/getlist", (req, res) => ctrl.output.getlist(req, res));
+router.get("/getfile", multipartMiddleware, (req, res) =>
+  ctrl.output.getfile(req, res)
+);
+router.get("/getaudio", multipartMiddleware, (req, res) =>
+  ctrl.output.getaudio(req, res)
+);
 
 router.post("/login", ctrl.process.login);
 router.post("/register", ctrl.process.register);
-router.post("/uploadAudio", multipartMiddleware, async (req, res) => await ctrl.process.uploadAudio(req, res));
+router.post(
+  "/uploadAudio",
+  multipartMiddleware,
+  async (req, res) => await ctrl.process.uploadAudio(req, res)
+);
+router.post(
+  "/uploadTranslatedScript",
+  async (req, res) => await ctrl.process.uploadTranslatedScript(req, res)
+);
 export default router;
