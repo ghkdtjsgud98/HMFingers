@@ -114,7 +114,36 @@ export const SummaryWordsIcon = styled(BsDot)`
 
 
 export const TranslateWrapper = styled.div`
+position: absolute;
 `;
+
+export const LanguageButtonWrapper = styled.div`
+
+position : relative;
+width : 100%;
+height : 30px;
+display : flex;
+flex-direction : row;
+//justify-content: space-between;
+`;
+
+export const LanguageButton = styled.button`
+position : relative;
+width : 80px;
+height : 30px;
+margin-right : 15px;
+//right : 20px;
+//bottom : 10px;
+font-size : 15px;
+font-weight : bold;
+cursor: pointer;
+border : none;
+border-radius : 15px;
+background: rgba(196, 196, 196, 0.4);
+`;
+
+
+
 
 
 {/************************PlayBar************************/}
