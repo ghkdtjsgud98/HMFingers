@@ -4,14 +4,13 @@ import {
 } from './StyledComponent';
 // import { Link } from 'react-router-dom';
 
-const PlayBar = (currentTime2) => {
-
-// console.log("PB-currentTime2 : ", currentTime2.currentTime2);
+// props: currentTime2
+const PlayBar = (props) => {
 
 var obj = document.getElementById('audio');
 
 if (obj !== null){
-  obj.currentTime = currentTime2.currentTime2;
+  obj.currentTime = props.currentTime;
 }
 
   return (
