@@ -23,7 +23,7 @@ const Output = (props) => {
   const menuList = {
     0: <Script getTime={getTime} scriptId={props.scriptId}/>,
     1: <Summary />,
-    2: <Translate />
+    2: <Translate scriptId={props.scriptId}/>
   };
   // console.log("op", currentTime);
   // console.log("op", props.scriptId);
