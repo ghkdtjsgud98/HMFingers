@@ -5,8 +5,10 @@ import {
   FileHandlingBox,
   FileWrapper,
   FileAllButton,
+  FileSymbol,
 
 } from './StyledComponent';
+import { RiContactsBookLine } from 'react-icons/ri';
 // import { Link } from 'react-router-dom';
 
 // props: getScriptId
@@ -18,30 +20,33 @@ const FileHandling = (props) => {
   useEffect(() => {
     const axiosGet = async () => {
       await axios.get(`${address}/getlist`, { params: body }).then((res) => {
-        setFileList(res);
+        // console.log(res.data.filelist);
+        setFileList(res.data.filelist);
       });
     };
     axiosGet();
 
-    console.log(body)
     console.log(FileList);
-
   },[]);
 
 
-  const FileListElementCreator = ({FileList}) => {
+  const FileListCreator = ({FileList}) => {
 
     return(
       <>
-        {/* {FileList.entries(File => (
-          // <FileWrapper onClick={(e) => fileHandler(File.script_id,e)}>{File.nick_name}</FileWrapper>  
-          <FileWrapper>{File.nick_name}</FileWrapper>  
-        ))} */}
+       {FileList.map((file) => (
+         <FileWrapper key={file.script_id} onClick={(e) => onClickFile(file.script_id, e)}> 
+            <FileSymbol/>
+            {file.create_date.substring(0,10)}
+            &nbsp;&nbsp;
+            {file.nick_name}
+         </FileWrapper>
+       )) }
       </>
     );
   }
 
-  const onClickFile = (e, scriptId) => {
+  const onClickFile = (scriptId, e) => {
     e.preventDefault();
     // console.log("fh", scriptId);
     props.getScriptId(scriptId);
@@ -50,9 +55,8 @@ const FileHandling = (props) => {
   return (
     <>
     <FileHandlingBox>
-      {/* <FileListElementCreator FileList={FileList}></FileListElementCreator> */}
-      <span onClick={(e) => onClickFile(e, 123)}>TEST</span>
-      <span onClick={(e) => onClickFile(e, 345)}>TEST</span>
+      <FileListCreator FileList={FileList}></FileListCreator>
+      <FileAllButton>ALL</FileAllButton>
     </FileHandlingBox>
     </>
   );

@@ -347,8 +347,17 @@ export const FileWrapper = styled.div`
   margin : 20px 20px 0px 20px;
   font-size : 20px;
   font-weight : bold;
+  display : flex;
 
   cursor: pointer;
+`;
+export const FileSymbol = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: black;
+  margin-top: 5px;
+  margin-right: 10px;
 `;
 export const FileAllButton = styled.div`
   position : absolute;
