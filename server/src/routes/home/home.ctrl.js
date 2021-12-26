@@ -231,7 +231,7 @@ const process = {
 
     storeLocalScript(scriptPath, result);
 
-    const sql = `INSERT INTO Translates VALUES (${pk}, "${nation_code}", 2255, "${scriptPath}", "${nick_name}", "${create_date}", ${origin_script_id});`
+    const sql = `INSERT INTO Translates VALUES (${pk}, "${nation_code}", ${user_pk}, "${scriptPath}", "${nick_name}", "${create_date}", ${origin_script_id});`
 
     connection.query(sql, function (err, rows, fields){
       if (err) {
