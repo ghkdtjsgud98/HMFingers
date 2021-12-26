@@ -145,7 +145,7 @@ const UploadOption = (props) => {
                   {/* <input type="file" onChange={(e) => {onFileUpload(e)}} /> */}
                   <UploadOptionFileInput 
                     type="file"              
-                    accept=".mp3"
+                    accept="audio/*"
                     // value={file}
                     onChange={fileHandler}
                     required

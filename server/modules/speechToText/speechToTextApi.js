@@ -1,13 +1,14 @@
 import speech from "@google-cloud/speech";
 import recorder from "node-record-lpcm16";
 import dotenv from "dotenv";
-import fs from "fs";
 import {
   ENCODING_UNSPECIFIED,
   ENCODING_LINEAR16,
   LANGUAGE_CODE_KR,
 } from "../../common/constants.js";
-import { transFileToAudioBytes } from "../fileUtils/fileUtils.js";
+import { transFileToAudioBytes } from "../../common/fileUtils.js";
+import { groupBy } from "../../common/stringUtils.js";
+import fs from "fs";
 
 dotenv.config();
 
@@ -15,27 +16,33 @@ const client = new speech.SpeechClient({
   projectId: process.env.GCP_PROJECT_ID,
 });
 
+const STTConfig = (audioType) => {
+  return {
+    enableWordTimeOffsets: true,
+    encoding: audioType === "mp3" ? ENCODING_UNSPECIFIED : ENCODING_LINEAR16,
+    // .wav 확장자 파일의 sampleRateHertz 값. 후에 파일 인코딩 방식이 정해지면 변경 가능.
+    sampleRateHertz: audioType === "wav" ? 44100 : 16000, // 44100,
+    // 해당 파일의 channel 수. 파일에 따라 달라질 수 있으므로 검토 필요.
+    audioChannelCount: audioType === "wav" ? 2 : 1,
+    enableSeparateRecognitionPerChannel: true,
+    // 번역할 언어 설정.
+    languageCode: LANGUAGE_CODE_KR,
+  };
+}
+
 export async function convertAudioToScript(filePath, audioType) {
   // audio 파일을 bytes string으로 변환
+  console.log(filePath)
   const audioBytes = transFileToAudioBytes(filePath);
 
   // The audio file's encoding, sample rate in hertz, and BCP-47 language code
   const audio = {
     content: audioBytes,
   };
-  const config = {
-    encoding: audioType !== "wav" ? ENCODING_UNSPECIFIED : ENCODING_LINEAR16,
-    // .wav 확장자 파일의 sampleRateHertz 값. 후에 파일 인코딩 방식이 정해지면 변경 가능.
-    sampleRateHertz: 16000, // 44100,
-    // 해당 파일의 channel 수. 파일에 따라 달라질 수 있으므로 검토 필요.
-    audioChannelCount: 2,
-    enableSeparateRecognitionPerChannel: true,
-    // 번역할 언어 설정.
-    languageCode: LANGUAGE_CODE_KR,
-  };
+
   const request = {
     audio: audio,
-    config: config,
+    config: STTConfig(audioType),
   };
 
   // Detects speech in the audio file
@@ -44,11 +51,18 @@ export async function convertAudioToScript(filePath, audioType) {
   if (!response) {
     throw Error("no speech to text response error");
   }
-  const transcription = response.results
-    .map((result) => result.alternatives[0].transcript)
-    .join("\n");
-  console.log(`Transcription: ${transcription}`);
-  return transcription;
+  const { firstKey, data } = groupBy(response.results, "channelTag");
+  const transcription = data[firstKey]
+    .map((result, index) => {
+      /* result.alternatives[0].words.forEach(wordInfo => {
+        NOTE: If you have a time offset exceeding 2^32 seconds, use the
+        wordInfo.{x}Time.seconds.high to calculate seconds.
+        console.log(`\t ${startSecs} secs - ${endSecs} secs`);
+      });
+      */
+      return { index: index, transcript: result.alternatives[0].transcript, words: result.alternatives[0].words };
+    })
+  return JSON.stringify(transcription);
 }
 
 export const convertLocalStreamingAudioToText = async () => {
