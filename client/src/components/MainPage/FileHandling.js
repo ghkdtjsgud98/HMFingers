@@ -17,7 +17,7 @@ const FileHandling = (props) => {
 
   useEffect(() => {
     const axiosGet = async () => {
-      await axios.get(`${address}/getlist`, body).then((res) => {
+      await axios.get(`${address}/getlist`, { params: body }).then((res) => {
         setFileList(res);
       });
     };
