@@ -227,7 +227,7 @@ const process = {
     const { nation_code, user_pk, nick_name, create_date, origin_script_id, data } = req.body
     const pk = Math.floor(Math.random() * 10000);
     const result = await translateScript(data, nation_code);
-    const scriptPath = `/resources/${origin_script_id}_translated.json`;
+    const scriptPath = `/resources/${origin_script_id}_${nation_code}_translated.json`;
 
     storeLocalScript(scriptPath, result);
 
