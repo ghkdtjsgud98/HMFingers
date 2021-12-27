@@ -25,7 +25,7 @@ const output = {
     console.log("hi");
     // res.render("home/register");
   },
-  getlist: (req, res) => {
+  getList: (req, res) => {
     const connection = mysql.createConnection(dbConfig);
     const sql = `SELECT * from Scripts where user_pk = ${req.query.user_pk};`;
     connection.query(sql, function (err, rows, fields) {
@@ -46,7 +46,7 @@ const output = {
       }
     });
   },
-  getfile: (req, res) => {
+  getFile: (req, res) => {
     const sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
@@ -102,7 +102,7 @@ const output = {
     );
   },
 
-  getaudio: (res, req) => {
+  getAudio: (res, req) => {
     const sql = `SELECT * from Audios where script_id = '${req.query.script_id}';`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
