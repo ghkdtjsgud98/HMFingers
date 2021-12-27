@@ -2,6 +2,7 @@
 import mysql from "mysql";
 import path from "path";
 import _ from "lodash";
+import fs from "fs";
 import { dbConfig } from "../../../config/database.js";
 import { convertAudioToScript } from "../../../modules/speechToText/speechToTextApi.js";
 import { getFileInstance } from "../../models/UserStorage.js";
@@ -103,13 +104,14 @@ const output = {
     );
   },
 
-  getAudio: (res, req) => {
-    const sql = `SELECT * from Audios where script_id = '${req.query.script_id}';`;
+  getAudio: (req, res) => {
+	  console.log(req.query);
+    const sql = `SELECT * from Audios where script_id = ${req.query.script_id};`;
     connection.query(sql, function (err, rows, fields) {
       if (err) {
         console.log(err);
       } else {
-        const stat = fs.statSync(__dirname + rows[0].path);
+        const stat = fs.statSync(rows[0].path);
         const fileSize = stat.size;
         const range = req.query.range; // req.headers.range 를 req.query.range 로 변경
 
@@ -130,7 +132,7 @@ const output = {
             "Content-Length": fileSize,
           };
           res.writeHead(200, header);
-          const readStream = fs.createReadStream(__dirname + rows[0].path);
+          const readStream = fs.createReadStream(rows[0].path);
           readStream.pipe(res);
         }
       }
