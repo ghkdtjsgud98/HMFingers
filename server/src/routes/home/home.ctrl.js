@@ -8,6 +8,7 @@ import { getFileInstance } from "../../models/UserStorage.js";
 import { translateScript } from "../../../modules/translation/translateApi.js";
 import { getHashFileName } from "../../../common/stringUtils.js";
 import { getLocalScriptToJson, storeLocalScript } from "../../../common/fileUtils.js";
+import { getTextSummary } from "../../../modules/naturalLanguage/summaryApi.js";
 
 const __dirname = path.resolve();
 const connection = mysql.createConnection(dbConfig);
@@ -135,6 +136,30 @@ const output = {
       }
     });
   },
+
+  getSummary: async (req, res) => {
+    const sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
+    connection.query(sql, function (err, rows, fields) {
+      if (err) {
+        console.log(err);
+      }
+      if (rows?.length > 0) {
+        const data = getLocalScriptToJson(rows[0].path);
+        const result = await getTextSummary(data.data);
+
+          console.log('getFile data: ', result);
+          return res.json({
+            success: true,
+            content: result,
+          });
+      } else {
+        return res.json({
+          success: false,
+          msg: "파일이 존재하지 않습니다.",
+        });
+      }
+    });
+  }
 };
 
 const process = {

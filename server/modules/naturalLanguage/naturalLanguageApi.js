@@ -1,5 +1,6 @@
   // Imports the Google Cloud client library
 import language from '@google-cloud/language';
+import { LANGUAGE_CODE_KR } from '../../common/constants.js';
 
 // Instantiates a client
 const client = new language.LanguageServiceClient();
@@ -30,6 +31,7 @@ export async function analyzeEntitiesOfText(text) {
   const document = {
     content: text,
     type: 'PLAIN_TEXT',
+    language: LANGUAGE_CODE_KR,
   };
 
   // Detects entities in the document
@@ -63,5 +65,3 @@ export async function classifyTextOfText(text) {
   });
   // [END language_classify_text]
 }
-
-// await analyzeEntitiesOfText("Christmas is on December 25. Kwanzaa, a yearly celebration of African American culture, is held from December 26 to January 1. Lastly, there is New Year’s Eve on December 31 and New Year’s Day on January 1.")
