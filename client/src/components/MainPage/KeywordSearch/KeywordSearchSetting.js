@@ -70,8 +70,8 @@ const KeywordSearchSetting = (props) => {
                   />
                 </KeywordSearchSettingDateSelect>
               </KeywordSearchSettingDateBox>
+              <ContentUploadButton type="submit" value="submit">Search</ContentUploadButton>
             </ModalContentsWrapper>
-            <ContentUploadButton type="submit" value="submit">Search</ContentUploadButton>
           </KeywordSearchSettingModal>
         </ModalBackground>
       ) : null}

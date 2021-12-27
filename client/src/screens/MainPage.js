@@ -25,7 +25,7 @@ const MainPage = () => {
     <>
       <UpperBar />
       <Output getTime={getTime} scriptId={scriptId} />
-      <PlayBar currentTime={currentTime} />
+      <PlayBar currentTime={currentTime} scriptId={scriptId}/>
       <KeywordSearch />
       <FileHandling getScriptId={getScriptId} />
     </>
