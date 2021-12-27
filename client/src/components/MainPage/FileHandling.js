@@ -18,8 +18,8 @@ const FileHandling = (props) => {
   var body = {"user_pk": localStorage.getItem("user_pk")};
 
   useEffect(() => {
-    const axiosGet = async () => {
-      await axios.get(`${address}/getlist`, { params: body }).then((res) => {
+    const axiosGet = () => {
+      axios.get(`${address}/getlist`, { params: body }).then((res) => {
         // console.log(res.data.filelist);
         setFileList(res.data.filelist);
       });
