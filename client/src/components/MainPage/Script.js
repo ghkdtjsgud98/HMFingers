@@ -29,7 +29,7 @@ export const Script = (props) => {
 
   useEffect(() => {
     const axiosGet = () => {
-      axios.get(`${address}/getFile`, { params: body }).then((res) => {
+      axios.get(`${address}/getfile`, { params: body }).then((res) => {
         if(res.data.content!=undefined){
           var temp = JSON.parse(res.data.content.data);
           setResponse(temp);
