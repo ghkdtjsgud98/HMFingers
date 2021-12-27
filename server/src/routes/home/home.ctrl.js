@@ -113,7 +113,7 @@ const output = {
         const fileSize = stat.size;
         const range = req.query.range; // req.headers.range 를 req.query.range 로 변경
 
-        /*if (!range) {
+        if (!range) {
           // 구간지정 안했을때
           const header = { "Content-Type": "audio/mpeg" };
           res.writeHead(200, header);
@@ -128,11 +128,11 @@ const output = {
             "Accept-Ranges": "bytes",
             "Content-Type": "audio/mpeg",
             "Content-Length": fileSize,
-          };*/
-          //res.writeHead(200, header);
+          };
+          res.writeHead(200, header);
           const readStream = fs.createReadStream(rows[0].path);
           readStream.pipe(res);
-       // }
+        }
       }
     });
   },
