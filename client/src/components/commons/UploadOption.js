@@ -50,7 +50,7 @@ const UploadOption = (props) => {
   const fileHandler = (e) => {
     e.preventDefault();
     setFile(e.target.files[0]);
-    console.log(file);
+    // console.log(file);
   };
 
   const filenameHandler = (e) => {
@@ -62,19 +62,26 @@ const UploadOption = (props) => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    let body = {
-      file : file,
-      filename: filename,
-      date: date,
-    };
+    // let body = {
+    //   file : file,
+    //   filename: filename,
+    //   date: date,
+    // };
 
-    const audioSrc = window.URL.createObjectURL(file);
+    // const audioSrc = window.URL.createObjectURL(file);
     const data = new FormData()
-    data.append('file', audioSrc)
+    data.append('file', file);
     data.append('filename', filename);
     data.append('date', date);
+    data.append('user_pk', localStorage.getItem("user_pk"));
 
-    console.log(data);
+    for (let key of data.keys()) {
+      console.log(key);
+    }
+    
+    for (let value of data.values()) {
+      console.log(value);
+    }
 
     // const data = new FormData();
     // data.append('file', file);
@@ -93,12 +100,11 @@ const UploadOption = (props) => {
 
     await axios.post(`${address}/uploadAudio`, data).then((res) => {
 
-      const accessToken = 'Bearer ' + res.data.accessToken;
-      axios.defaults.headers.common['Authorization'] = accessToken;
-      localStorage.setItem('Authorization', accessToken);
+      // const accessToken = 'Bearer ' + res.data.accessToken;
+      // axios.defaults.headers.common['Authorization'] = accessToken;
+      // localStorage.setItem('Authorization', accessToken);
 
-      console.log(res.status);
-      console.log(res.body);
+      console.log(res);
       // if (res.status === 201) navigate('/');
     });
 
@@ -145,7 +151,7 @@ const UploadOption = (props) => {
                   {/* <input type="file" onChange={(e) => {onFileUpload(e)}} /> */}
                   <UploadOptionFileInput 
                     type="file"              
-                    accept=".wav"
+                    accept="audio/*"
                     // value={file}
                     onChange={fileHandler}
                     required

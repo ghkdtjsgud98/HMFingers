@@ -7,22 +7,27 @@ import PlayBar from '../components/MainPage/PlayBar';
 
 const MainPage = () => {
 
-  var [currentTime2, setCurrentTime2] = useState(0);
+  var [currentTime, setCurrentTime] = useState(0);
+  var [scriptId, setScriptId] = useState();
 
-  const getTime2 = (t) => {
-    setCurrentTime2(t);
-    // console.log("MP-getTime2 작동o");
+  const getTime = (t) => {
+    setCurrentTime(t);
   }
 
-  // console.log("MP-currentTime2 : ", currentTime2.t);
+  const getScriptId = (scriptId) => {
+    setScriptId(scriptId);
+  }
+
+  // console.log("mp", currentTime);
+  // console.log("mp", scriptId);
 
   return (
     <>
       <UpperBar />
-      <Output getTime2={getTime2} />
-      <PlayBar currentTime2={currentTime2.t} />
+      <Output getTime={getTime} scriptId={scriptId} />
+      <PlayBar currentTime={currentTime} scriptId={scriptId}/>
       <KeywordSearch />
-      <FileHandling />
+      <FileHandling getScriptId={getScriptId} />
     </>
   );
 };

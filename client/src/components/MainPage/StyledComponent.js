@@ -73,6 +73,9 @@ export const ContentsWrapper = styled.div`
 export const ScriptWrapper = styled.div`
 
 `;
+export const ScriptCreator = styled.div`
+
+`;
 // export const SummaryWrapper = styled.div`
 //   position : relative;
 //   width : 900px;
@@ -114,7 +117,37 @@ export const SummaryWordsIcon = styled(BsDot)`
 
 
 export const TranslateWrapper = styled.div`
+position: absolute;
 `;
+
+export const LanguageButtonWrapper = styled.div`
+
+position : relative;
+margin-bottom : 5px;
+width : 100%;
+height : 30px;
+display : flex;
+flex-direction : row;
+//justify-content: space-between;
+`;
+
+export const LanguageButton = styled.button`
+position : relative;
+width : 80px;
+height : 30px;
+margin-right : 15px;
+//right : 20px;
+//bottom : 10px;
+font-size : 15px;
+font-weight : bold;
+cursor: pointer;
+border : none;
+border-radius : 15px;
+background: rgba(196, 196, 196, 0.4);
+`;
+
+
+
 
 
 {/************************PlayBar************************/}
@@ -192,14 +225,14 @@ export const ModalBackground = styled.div`
     left: 0;
     background: rgba(255, 255, 255, 0.5);
 
-    z-index : 9999;
+    // z-index : 9999;
     
 `;
 
 export const KeywordSearchSettingModal = styled.div`
   position: fixed;
   width: 350px;
-  height: 300px;
+  height: 320px;
   top: 150px;
   right: 50px;
   background-color: white;
@@ -219,8 +252,8 @@ export const KeywordSearchSettingModal = styled.div`
 export const ModalTitle = styled.div`
   position : relative;
   width : 100%;
-  height : 30px;
-  top : 25px;
+  // height : px;
+  top : 35px;
   font-size : 28px;
   font-weight : bold;
   display : flex;
@@ -232,7 +265,7 @@ export const ModalCloseButton = styled.span`
   position : absolute;
   width : 20px;
   height : 40px;
-  right : 15px;
+  right : 20px;
   margin-bottom : 0px;
   font-size: 30px;
   font-weight: bold;
@@ -245,8 +278,9 @@ export const ContentUploadButton = styled.button`
   width : 100px;
   height : 40px;
 
+  top: 240px;
   right : 20px;
-  bottom : 10px;
+  // bottom : 10px;
   font-size : 18px;
   font-weight : bold;
   cursor: pointer;
@@ -258,6 +292,7 @@ export const ContentUploadButton = styled.button`
 `;
 
 export const ModalContentsWrapper = styled.form`
+  margin-top: 25px;
   width: 100%;
   height : 250px;
   position: absolute;
@@ -265,7 +300,6 @@ export const ModalContentsWrapper = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top : 5px;
 `;
 
 export const ModalContentsTitle = styled.div`
@@ -346,8 +380,17 @@ export const FileWrapper = styled.div`
   margin : 20px 20px 0px 20px;
   font-size : 20px;
   font-weight : bold;
+  display : flex;
 
   cursor: pointer;
+`;
+export const FileSymbol = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: black;
+  margin-top: 5px;
+  margin-right: 10px;
 `;
 export const FileAllButton = styled.div`
   position : absolute;
