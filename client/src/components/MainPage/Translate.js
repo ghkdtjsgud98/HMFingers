@@ -5,8 +5,8 @@ import { address } from '../../variables';
 
 import {
   TranslateWrapper,
-  LanguageButtonWrapper,
-  LanguageButton,
+  // LanguageButtonWrapper,
+  // LanguageButton,
 
 } from "./StyledComponent";
 
@@ -15,7 +15,6 @@ const Translate = (props) => {
   var [language, setLanguage] = useState('');
   // var body = {"user_pk": localStorage.getItem("user_pk"), nation_code: language, origin_script_id: props.scriptId};
   var body = {"user_pk": localStorage.getItem("user_pk"), nation_code: 'ko', origin_script_id: 8844};
-
 
   const onClickLanguage = (e, language) => {
     e.preventDefault();
@@ -33,7 +32,7 @@ const Translate = (props) => {
     };
     axiosGet();
 
-    console.log(body);
+    // console.log(body);
     //console.log(contents);
 
   },[]);
@@ -42,12 +41,12 @@ const Translate = (props) => {
   return(
     
     <TranslateWrapper>
-      <LanguageButtonWrapper>
+      {/* <LanguageButtonWrapper>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'ko')}>한국어</LanguageButton>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'en')}>English</LanguageButton>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'ja')}>日本語</LanguageButton>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'es')}>español</LanguageButton>
-      </LanguageButtonWrapper>
+      </LanguageButtonWrapper> */}
       {contents}
     </TranslateWrapper>
   );  
