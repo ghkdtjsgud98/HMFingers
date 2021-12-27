@@ -2,13 +2,15 @@
 import mysql from "mysql";
 import path from "path";
 import _ from "lodash";
+import fs from "fs";
 import { dbConfig } from "../../../config/database.js";
 import { convertAudioToScript } from "../../../modules/speechToText/speechToTextApi.js";
 import { getFileInstance } from "../../models/UserStorage.js";
 import { translateScript } from "../../../modules/translation/translateApi.js";
 import { getHashFileName } from "../../../common/stringUtils.js";
 import { getLocalScriptToJson, storeLocalScript } from "../../../common/fileUtils.js";
-import fs from "fs";
+import { getTextSummary } from "../../../modules/naturalLanguage/summaryApi.js";
+
 const __dirname = path.resolve();
 const connection = mysql.createConnection(dbConfig);
 
@@ -113,7 +115,7 @@ const output = {
         const fileSize = stat.size;
         const range = req.query.range; // req.headers.range 를 req.query.range 로 변경
 
-        /*if (!range) {
+        if (!range) {
           // 구간지정 안했을때
           const header = { "Content-Type": "audio/mpeg" };
           res.writeHead(200, header);
@@ -128,14 +130,38 @@ const output = {
             "Accept-Ranges": "bytes",
             "Content-Type": "audio/mpeg",
             "Content-Length": fileSize,
-          };*/
-          //res.writeHead(200, header);
+          };
+          res.writeHead(200, header);
           const readStream = fs.createReadStream(rows[0].path);
           readStream.pipe(res);
-       // }
+        }
       }
     });
   },
+
+  getSummary: async (req, res) => {
+    const sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
+    connection.query(sql, async function (err, rows, fields) {
+      if (err) {
+        console.log(err);
+      }
+      if (rows?.length > 0) {
+        const data = getLocalScriptToJson(rows[0].path);
+        const result = await getTextSummary(data.data);
+
+          console.log('getFile data: ', result);
+          return res.json({
+            success: true,
+            content: result,
+          });
+      } else {
+        return res.json({
+          success: false,
+          msg: "파일이 존재하지 않습니다.",
+        });
+      }
+    });
+  }
 };
 
 const process = {

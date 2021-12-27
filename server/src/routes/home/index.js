@@ -19,6 +19,7 @@ router.get("/getAudio", (req, res) =>
 );
 router.get("/getList", (req, res) => ctrl.output.getList(req, res));
 router.get("/getTranslatedFile", (req, res) => ctrl.output.getTranslatedFile(req, res));
+router.get("/getSummary", async (req, res) => await ctrl.output.getSummary(req, res));
 
 router.post("/login", ctrl.process.login);
 router.post("/register", ctrl.process.register);

@@ -47,7 +47,7 @@ export const Script = (props) => {
         <>
           {res.map((index) => (
             index.words.map((index2) => (
-              <span onClick={() => onClickWord(index2.startTime.seconds)}>{index2.word} </span>
+              <span onClick={(e) => onClickWord(index2.startTime.seconds, e)}>{index2.word} </span>
             ))
           ))}
         </>
@@ -57,7 +57,8 @@ export const Script = (props) => {
     }
   }
 
-  const onClickWord = (t) => {
+  const onClickWord = (t, e) => {
+    e.preventDefault();
     // console.log("sc", t);
     props.getTime(t);
   };
