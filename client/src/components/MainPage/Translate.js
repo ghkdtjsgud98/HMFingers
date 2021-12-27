@@ -16,7 +16,6 @@ const Translate = (props) => {
   // var body = {"user_pk": localStorage.getItem("user_pk"), nation_code: language, origin_script_id: props.scriptId};
   var body = {"user_pk": localStorage.getItem("user_pk"), nation_code: 'ko', origin_script_id: 8844};
 
-
   const onClickLanguage = (e, language) => {
     e.preventDefault();
     setLanguage(language);
@@ -33,7 +32,7 @@ const Translate = (props) => {
     };
     axiosGet();
 
-    console.log(body);
+    // console.log(body);
     //console.log(contents);
 
   },[]);

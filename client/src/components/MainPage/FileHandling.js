@@ -19,7 +19,7 @@ const FileHandling = (props) => {
 
   useEffect(() => {
     const axiosGet = () => {
-      axios.get(`${address}/getlist`, { params: body }).then((res) => {
+      axios.get(`${address}/getList`, { params: body }).then((res) => {
         // console.log(res.data.filelist);
         setFileList(res.data.filelist);
       });
