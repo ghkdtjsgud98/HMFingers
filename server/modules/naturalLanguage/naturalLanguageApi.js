@@ -1,5 +1,6 @@
   // Imports the Google Cloud client library
 import language from '@google-cloud/language';
+import { LANGUAGE_CODE_KR } from '../../common/constants.js';
 
 // Instantiates a client
 const client = new language.LanguageServiceClient();
@@ -18,14 +19,8 @@ export async function analyzeEntitySentimentOfText(text) {
   // score: 0을 기준으로 +이면 긍정, -이면 부정
   // magnitude: score의 정도를 판단함.
 
-  console.log('Entities and sentiments:');
-  entities.forEach(entity => {
-    console.log(`  Name: ${entity.name}`);
-    console.log(`  Type: ${entity.type}`);
-    console.log(`  Score: ${entity.sentiment.score}`);
-    console.log(`  Magnitude: ${entity.sentiment.magnitude}`);
-  });
 
+  console.log('Entities and sentiments:');
   // return sentiment;
 }
 
@@ -36,6 +31,7 @@ export async function analyzeEntitiesOfText(text) {
   const document = {
     content: text,
     type: 'PLAIN_TEXT',
+    language: LANGUAGE_CODE_KR,
   };
 
   // Detects entities in the document
@@ -43,14 +39,7 @@ export async function analyzeEntitiesOfText(text) {
 
   const entities = result.entities;
 
-  console.log('Entities:');
-  entities.forEach(entity => {
-    console.log(entity.name);
-    console.log(` - Type: ${entity.type}, Salience: ${entity.salience}`);
-    if (entity.metadata && entity.metadata.wikipedia_url) {
-      console.log(` - Wikipedia URL: ${entity.metadata.wikipedia_url}`);
-    }
-  });
+  return entities;
   // [END language_entities_text]
 }
 
