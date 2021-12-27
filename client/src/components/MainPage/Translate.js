@@ -5,8 +5,8 @@ import { address } from '../../variables';
 
 import {
   TranslateWrapper,
-  LanguageButtonWrapper,
-  LanguageButton,
+  // LanguageButtonWrapper,
+  // LanguageButton,
 
 } from "./StyledComponent";
 
@@ -42,12 +42,12 @@ const Translate = (props) => {
   return(
     
     <TranslateWrapper>
-      <LanguageButtonWrapper>
+      {/* <LanguageButtonWrapper>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'ko')}>한국어</LanguageButton>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'en')}>English</LanguageButton>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'ja')}>日本語</LanguageButton>
         <LanguageButton onClick={(e) => onClickLanguage(e, 'es')}>español</LanguageButton>
-      </LanguageButtonWrapper>
+      </LanguageButtonWrapper> */}
       {contents}
     </TranslateWrapper>
   );  

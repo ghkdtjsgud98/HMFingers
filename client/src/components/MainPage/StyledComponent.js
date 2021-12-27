@@ -73,6 +73,9 @@ export const ContentsWrapper = styled.div`
 export const ScriptWrapper = styled.div`
 
 `;
+export const ScriptCreator = styled.div`
+
+`;
 // export const SummaryWrapper = styled.div`
 //   position : relative;
 //   width : 900px;
