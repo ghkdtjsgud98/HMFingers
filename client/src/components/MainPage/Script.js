@@ -1,8 +1,7 @@
 import React, { useEffect,useState } from "react";
 import axios from 'axios';
 import { address } from '../../variables';
-import { ScriptWrapper } from "./StyledComponent";
-import { json } from "express/lib/response";
+import { ScriptWrapper, ScriptCreator } from "./StyledComponent";
 
 // props: getTime, scriptId
 export const Script = (props) => {
@@ -23,28 +22,47 @@ export const Script = (props) => {
   //   }
   // ]); 
 
-  var [script, setScript] = useState("");
+  // var temp;
+  var script = "";
   var body = {"script_id": props.scriptId};
+  var [response,setResponse] = useState();
 
   useEffect(() => {
-    const axiosGet = async () => {
-      await axios.get(`${address}/getfile`, { params: body }).then((res) => {
-        // console.log(res.data.content.data);
-        // setScript(res.data.content.data.transcript);
-        var temp = JSON.parse(res.data.content.data);
-        // for (const [])
-        console.log("------->",temp);
+    const axiosGet = () => {
+      axios.get(`${address}/getfile`, { params: body }).then((res) => {
+        if(res.data.content!=undefined){
+          var temp = JSON.parse(res.data.content.data);
+          setResponse(temp);
+          // console.log("res",response);
+      } 
       });
     };
     axiosGet();
   },[props.scriptId]);
 
-  // const onClickWord = (t) => {
-  //   // console.log("sc", t);
-  //   props.getTime(t);
-  // };
+  const ScriptCreator = ({res}) => {
+    // console.log("-->", res);
+    if(res!=undefined){
+      return(
+        <>
+          {res.map((index) => (
+            index.words.map((index2) => (
+              <span onClick={() => onClickWord(index2.startTime.seconds)}>{index2.word} </span>
+            ))
+          ))}
+        </>
+      )
+    } else{
+      return null
+    }
+  }
 
-  console.log("script->scriptId", props.scriptId);
+  const onClickWord = (t) => {
+    // console.log("sc", t);
+    props.getTime(t);
+  };
+
+  // console.log("script->scriptId", props.scriptId);
 
   
   return(
@@ -59,7 +77,8 @@ export const Script = (props) => {
         <br /><br />
 
         {contents} */}
-        {script}
+        {/* {script} */}
+        <ScriptCreator res={response}/>
       </ScriptWrapper>
     </>
   );
