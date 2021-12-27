@@ -73,6 +73,9 @@ export const ContentsWrapper = styled.div`
 export const ScriptWrapper = styled.div`
 
 `;
+export const ScriptCreator = styled.div`
+
+`;
 // export const SummaryWrapper = styled.div`
 //   position : relative;
 //   width : 900px;
@@ -249,7 +252,7 @@ export const ModalTitle = styled.div`
   position : relative;
   width : 100%;
   // height : px;
-  top : 30px;
+  top : 35px;
   font-size : 28px;
   font-weight : bold;
   display : flex;
@@ -274,9 +277,9 @@ export const ContentUploadButton = styled.button`
   width : 100px;
   height : 40px;
 
-  // top: 20px;
+  top: 240px;
   right : 20px;
-  bottom : 10px;
+  // bottom : 10px;
   font-size : 18px;
   font-weight : bold;
   cursor: pointer;
