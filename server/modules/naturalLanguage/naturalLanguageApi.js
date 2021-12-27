@@ -18,14 +18,8 @@ export async function analyzeEntitySentimentOfText(text) {
   // score: 0을 기준으로 +이면 긍정, -이면 부정
   // magnitude: score의 정도를 판단함.
 
-  console.log('Entities and sentiments:');
-  entities.forEach(entity => {
-    console.log(`  Name: ${entity.name}`);
-    console.log(`  Type: ${entity.type}`);
-    console.log(`  Score: ${entity.sentiment.score}`);
-    console.log(`  Magnitude: ${entity.sentiment.magnitude}`);
-  });
 
+  console.log('Entities and sentiments:');
   // return sentiment;
 }
 
@@ -43,14 +37,7 @@ export async function analyzeEntitiesOfText(text) {
 
   const entities = result.entities;
 
-  console.log('Entities:');
-  entities.forEach(entity => {
-    console.log(entity.name);
-    console.log(` - Type: ${entity.type}, Salience: ${entity.salience}`);
-    if (entity.metadata && entity.metadata.wikipedia_url) {
-      console.log(` - Wikipedia URL: ${entity.metadata.wikipedia_url}`);
-    }
-  });
+  return entities;
   // [END language_entities_text]
 }
 
@@ -76,3 +63,5 @@ export async function classifyTextOfText(text) {
   });
   // [END language_classify_text]
 }
+
+// await analyzeEntitiesOfText("Christmas is on December 25. Kwanzaa, a yearly celebration of African American culture, is held from December 26 to January 1. Lastly, there is New Year’s Eve on December 31 and New Year’s Day on January 1.")
