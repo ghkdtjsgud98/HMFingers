@@ -123,6 +123,7 @@ position: absolute;
 export const LanguageButtonWrapper = styled.div`
 
 position : relative;
+margin-bottom : 5px;
 width : 100%;
 height : 30px;
 display : flex;
