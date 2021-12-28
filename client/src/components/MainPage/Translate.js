@@ -34,20 +34,37 @@ export const Translate = (props) => {
       axios.post(`${address}/uploadTranslatedScript`, body).then((res) => {
         console.log('POST Body===> ', body);
         // setContents('transcript upload ==> ', res);
+        
+        axios.get(`${address}/getTranslatedFile`, {params : body2}).then((res) => {
+          console.log('GET Body===> ', body2);
+          console.log('GET Response ===> ', res);
+          if(res.data.content.data!=undefined){
+            setContents(res.data.content.data);
+          }
+          else{
+            setContents("잘못된 script_id 입니다.");
+          }
+          
+        });
       });
     };
     axiosPost();
 
-    const axiosGet = () => {
-      axios.get(`${address}/getTranslatedFile`, {params : body2}).then((res) => {
-        console.log('GET Body===> ', body2);
-
-        setContents(res.data.content.data);
+    // const axiosGet = () => {
+    //   axios.get(`${address}/getTranslatedFile`, {params : body2}).then((res) => {
+    //     console.log('GET Body===> ', body2);
+    //     console.log('GET Response ===> ', res);
+    //     if(res.data!=undefined){
+    //       setContents(res.data.content.data);
+    //     }
+    //     else{
+    //       setContents("잘못된 script_id 입니다.");
+    //     }
         
-        console.log('GET Response ===> ', res);
-      });
-    };
-    axiosGet();
+    //   });
+    // };
+    // axiosGet();
+    
   }
 
 
