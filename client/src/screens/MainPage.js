@@ -18,9 +18,6 @@ const MainPage = () => {
     setScriptId(scriptId);
   }
 
-  // console.log("mp", currentTime);
-  // console.log("mp", scriptId);
-
   return (
     <>
       <UpperBar />

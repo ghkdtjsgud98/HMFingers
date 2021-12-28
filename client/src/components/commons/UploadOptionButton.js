@@ -4,6 +4,7 @@ import  {UpperBoxUploadButton, UpperBoxUploadIcon} from "./StyledComponent";
 
 
 class UploadOptionButton extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,9 +15,6 @@ class UploadOptionButton extends Component {
   openModal = () => {
     this.setState({ isModalOpen: true });
   };
-
-
-
   closeModal = () => {
     this.setState({ isModalOpen: false });
 

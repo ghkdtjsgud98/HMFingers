@@ -41,7 +41,7 @@ export const getEntityInstance = function (entity) {
     /** 감정을 표현하는 중요도 */
     salience: entity.salience,
     /** 해당 단어 검색 url */
-    wikipedia_url: entity.metadata.wikipedia_url,
+    wikipedia_url: entity.metadata && entity.metadata.wikipedia_url ? entity.metadata.wikipedia_url : "",
     /** 긍정의 정도를 표현하는 값 */
     // sentimentScore: entity.sentiment.score,
     /** 감정의 정도를 표현하는 값 */

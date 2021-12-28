@@ -147,7 +147,7 @@ const output = {
       }
       if (rows?.length > 0) {
         const data = getLocalScriptToJson(rows[0].path);
-        const result = await getTextSummary(data.data);
+        const result = await getTextSummary(data.data.map(value => value.transcript).reduce((prev, cur) => prev + cur, ""));
 
           console.log('getFile data: ', result);
           return res.json({

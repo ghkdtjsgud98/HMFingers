@@ -10,12 +10,6 @@ export const LoginPageBox = styled.form`
   align-items: center;
 `;
 
-// export const LoginPageLogo = styled.div`
-//   width: 200px;
-//   height: 200px;
-//   font-size : 60px;
-// `;
-
 export const TitleWrapper = styled.div`
   width : 100%;
   top : 15px;
@@ -24,9 +18,9 @@ export const TitleWrapper = styled.div`
   display : flex;
   flex-direction : column;
   align-items : center;
-
   margin-bottom : 70px;
 `;
+
 export const Title = styled.div`
   position : relative;
   font-size : 60px;
@@ -36,15 +30,12 @@ export const Title = styled.div`
 
 export const SubTitle = styled.div`
   position : relative;
-  //top : 50px;
   font-size : 20px;
   color : #000000;
 `;
 
-
-
 export const LoginPageTextBox = styled.div`
-  //margin-left: 20px;
+
 `;
 
 export const LoginPageMainText = styled.div`
@@ -90,7 +81,6 @@ export const LoginPagePasswordInput = styled.input`
     padding-left: 10px;
   }
 `;
-
 
 export const LoginPageLoginButton = styled.button`
   margin-top: 70px;

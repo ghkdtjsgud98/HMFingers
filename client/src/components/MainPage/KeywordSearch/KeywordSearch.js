@@ -3,7 +3,6 @@ import {
   KeywordSearchBox,
   KeywordSearchInput,
 } from '../StyledComponent';
-// import { Link } from 'react-router-dom';
 import KeywordSearchSettingButton from './KeywordSearchSettingButton';
 
 const KeywordSearch = () => {

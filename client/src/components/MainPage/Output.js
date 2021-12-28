@@ -4,12 +4,10 @@ import {
   TabWrapper,
   TabElement,
   ContentsWrapper,
-
 } from './StyledComponent';
 import Script from './Script';
 import Translate from './Translate';
 import Summary from './Summary';
-// import { Link } from 'react-router-dom';
 
 // props: getTime2, scriptId
 const Output = (props) => {
@@ -25,8 +23,6 @@ const Output = (props) => {
     1: <Summary scriptId={props.scriptId}/>,
     2: <Translate scriptId={props.scriptId}/>
   };
-  // console.log("op", currentTime);
-  // console.log("op", props.scriptId);
 
   return(
   <OutputBox>
@@ -41,7 +37,7 @@ const Output = (props) => {
         isActive={`${menu === 1? 'active': null}`} 
         onClick={() => setMenu(1)}
       >
-        SUMMARY
+        SEARCH
       </TabElement>
       <TabElement
         isActive={`${menu === 2? 'active': null}`} 

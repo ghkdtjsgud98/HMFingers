@@ -1,11 +1,7 @@
-import React, { forwardRef, useState, Component } from "react";
-// import ReactDatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-
+import React from "react";
 import { 
     ModalBackground, 
     KeywordSearchSettingModal,
-
     ModalTitle,
     ModalCloseButton, 
     ModalContentsWrapper,
@@ -15,7 +11,6 @@ import {
     KeywordSearchSettingDateSelect,
     KeywordSearchSettingDateInput,
     ContentUploadButton,
-
 } from "../StyledComponent";
 
 

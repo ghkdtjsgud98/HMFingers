@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import { FiUpload } from "react-icons/fi"
 import { GoSignOut } from "react-icons/go"
 import { GoPrimitiveDot } from "react-icons/go"
-import { BiCalendar } from "react-icons/bi"
-
-
 
 
 {/************************UpperBar************************/}
@@ -16,13 +13,10 @@ export const ModalBackground = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    //background: rgba(0, 0, 0, 0.5);
     background: rgba(255, 255, 255, 0.5);
-
     z-index : 9999;
     
 `;
-
 
 export const UpperBarBox = styled.div`
   position : fixed;
@@ -33,7 +27,6 @@ export const UpperBarBox = styled.div`
   display : flex;
   flex-direction : column;
   align-items : center;
-
   z-index : 9999;
 `;
 
@@ -54,12 +47,12 @@ export const UpperBoxUploadIcon = styled(FiUpload)`
   color : #646464;
   
 `;
+
 export const UploadContentsDot = styled(GoPrimitiveDot)`
   width : 15px;
   height : 15px;
   margin-right : 5px;
 `;
-
 
 export const UpperBoxLogoutButton = styled.button`
   position : fixed;
@@ -78,6 +71,7 @@ export const LogoutIcon = styled(GoSignOut)`
   height: 50px;
   color : #646464;
 `;
+
 export const TitleWrapper = styled.div`
   position : relative;
   width : 200px;
@@ -88,6 +82,7 @@ export const TitleWrapper = styled.div`
   flex-direction : column;
   align-items : center;
 `;
+
 export const Title = styled.div`
   position : relative;
   font-size : 36px;
@@ -103,11 +98,7 @@ export const SubTitle = styled.div`
   color : #000000;
 `;
 
-
 {/************************Upload************************/}
-// UploadOptionModal, 
-// ModalCloseButton, 
-// ModalContentsWrapper,
 
 export const UploadOptionModal = styled.form`
   position: fixed;
@@ -117,16 +108,13 @@ export const UploadOptionModal = styled.form`
   right: 120px;
   float: right;
   background-color: white;
-  
   box-sizing: border-box;
   border: 1px solid #999999;
   border-radius: 40px;
   background: white;       
   z-index : 9999;
-
   display : flex;
   flex-direction : column;
-  //align-items : center;
 `;
 
 export const ModalTitle = styled.div`
@@ -143,7 +131,6 @@ export const ModalTitle = styled.div`
 
 export const ModalCloseButton = styled.span`
   position : absolute;
-  
   right : 15px;
   margin-bottom : 0px;
   font-size: 30px;
@@ -155,7 +142,6 @@ export const ContentUploadButton = styled.button`
   position : absolute;
   width : 100px;
   height : 40px;
-
   right : 20px;
   bottom : 10px;
   font-size : 18px;
@@ -164,8 +150,6 @@ export const ContentUploadButton = styled.button`
   border : none;
   border-radius : 20px;
   background: rgba(196, 196, 196, 1);
-  
-
 `;
 
 export const ModalContentsWrapper = styled.div`
@@ -187,8 +171,6 @@ export const ModalContentsTitle = styled.div`
   margin-bottom : 10px;
 `;
 
-
-
 export const UploadOptionFileSelectBox = styled.div`
   position : relative;
   width : 100%;
@@ -196,12 +178,10 @@ export const UploadOptionFileSelectBox = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
- 
 `;
 
 export const UploadOptionContentCheckBox = styled.div`
   position : relative;
-  
   width : 100%;
   height : 18px;
   display: flex;
@@ -209,7 +189,6 @@ export const UploadOptionContentCheckBox = styled.div`
 `;
 
 export const UploadOptionCheckInput = styled.input`
-
 `;
 
 export const UploadOptionFileSelect = styled.div`
@@ -217,9 +196,7 @@ export const UploadOptionFileSelect = styled.div`
 `;
 
 export const UploadOptionFileInput = styled.input`
-
 `;
-
 
 export const UploadOptionNicknameBox = styled.div`
   position : relative;
@@ -255,7 +232,6 @@ export const UploadOptionDateBox = styled.div`
   top : 40px;
 `;
 
-
 export const UploadOptionDateSelect = styled.div`
   position : relative;
   width: 200px;
@@ -280,8 +256,5 @@ export const DateText = styled.div`
   cursor: pointer;
   left : 30px;
   color : rgba(196, 196, 196, 1);
-  
-  background : pink;    //임시지정
-
 `;
 

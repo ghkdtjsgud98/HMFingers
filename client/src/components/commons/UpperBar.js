@@ -1,5 +1,5 @@
-import React, { useEffect, useCallback, useState, Component } from 'react';
-import { Link, useHistory, Route } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   UpperBarBox,
   UpperBoxLogoutButton,
@@ -21,7 +21,6 @@ const UpperBar = () => {
         </TitleWrapper>
       </Link>
       <UploadOptionButton/>
-
       <Link to='/'>
         <UpperBoxLogoutButton>
           <LogoutIcon />   
