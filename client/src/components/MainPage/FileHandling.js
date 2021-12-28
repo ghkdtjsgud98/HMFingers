@@ -6,10 +6,7 @@ import {
   FileWrapper,
   FileAllButton,
   FileSymbol,
-
 } from './StyledComponent';
-import { RiContactsBookLine } from 'react-icons/ri';
-// import { Link } from 'react-router-dom';
 
 // props: getScriptId
 const FileHandling = (props) => {
@@ -23,7 +20,6 @@ const FileHandling = (props) => {
   useEffect(() => {
     const axiosGet = () => {
       axios.get(`${address}/getList`, { params: body }).then((res) => {
-        // console.log(res);
         setFileList(res.data.filelist);
       });
     };
@@ -43,7 +39,6 @@ const FileHandling = (props) => {
           key={file.script_id} 
           onClick={(e) => onClickFile(file.script_id, e)}
           isSelected={`${file.script_id == selected? 'true':null}`}
-          // isActive={`${menu === 0? 'active': null}`} 
           > 
               <FileSymbol/>
               {file.create_date.substring(0,10)}
@@ -61,7 +56,6 @@ const FileHandling = (props) => {
   const onClickFile = (scriptId, e) => {
     e.preventDefault();
     SetSelected(scriptId);
-    // console.log("fh", scriptId);
     props.getScriptId(scriptId);
   }
 

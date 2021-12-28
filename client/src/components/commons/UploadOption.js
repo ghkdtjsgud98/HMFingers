@@ -5,29 +5,22 @@ import { address } from '../../variables';
 
 import { 
     ModalBackground, 
-
     UploadOptionModal, 
     ModalTitle,
     ModalCloseButton, 
     ModalContentsWrapper,
     ModalContentsTitle,
-
     UploadOptionFileSelectBox,
     UploadOptionContentCheckBox,
     UploadOptionCheckInput,
-
     UploadOptionFileSelect,
     UploadOptionFileInput,
-
     UploadOptionNicknameBox,
     UploadOptionNicknameInput,
-
     UploadOptionDateBox,
     UploadOptionDateSelect,
     UploadOptionDateInput,
-
     ContentUploadButton,
-
     UploadContentsDot,
 } from "./StyledComponent";
 
@@ -48,47 +41,33 @@ const UploadOption = (props) => {
   const fileHandler = (e) => {
     e.preventDefault();
     setFile(e.target.files[0]);
-    // console.log(file);
   };
 
   const filenameHandler = (e) => {
     e.preventDefault();
     setFilename(e.target.value);
   };
-  
 
   const SubmitHandler = (e) => {
     e.preventDefault();
 
-    // const audioSrc = window.URL.createObjectURL(file);
     const data = new FormData()
     data.append('file', file);
     data.append('filename', filename);
     data.append('date', date);
     data.append('user_pk', localStorage.getItem("user_pk"));
 
-    // for (let key of data.keys()) {
-    //   console.log(key);
-    // }
-    
-    // for (let value of data.values()) {
-    //   console.log(value);
-    // }
-
     axios.post(`${address}/uploadAudio`, data).then((res) => {
-
-      console.log(res);
       if (res.status === 200) navigate(0);
     });
 
   };
 
-  
   return (
     <>
       {isOpen ? ( 
         <ModalBackground>
-          <UploadOptionModal onSubmit={SubmitHandler} >
+          <UploadOptionModal onSubmit={SubmitHandler}>
             <ModalCloseButton onClick={close}> 
               &times;
             </ModalCloseButton>
@@ -96,9 +75,7 @@ const UploadOption = (props) => {
               Upload Option
             </ModalTitle>
             <ModalContentsWrapper>
-
               <UploadOptionFileSelectBox>
-
                 <UploadOptionContentCheckBox>                    
                   <ModalContentsTitle>
                     <UploadOptionCheckInput 
@@ -117,11 +94,7 @@ const UploadOption = (props) => {
                     Streaming
                   </ModalContentsTitle>
                 </UploadOptionContentCheckBox>   
-
-
-                <UploadOptionFileSelect method="post" enctype="multipart/form-data">        {/*FileSelection 체크박스 선택하면 활성화돼야 함*/}
-                  {/* multipart/form-data : 인코딩하지 않음, 파일이나 이미지를 서버로 전송할 때 주로 사용 */}
-                  {/* <input type="file" onChange={(e) => {onFileUpload(e)}} /> */}
+                <UploadOptionFileSelect method="post" enctype="multipart/form-data"> 
                   <UploadOptionFileInput 
                     type="file"              
                     accept="audio/*"
@@ -130,12 +103,10 @@ const UploadOption = (props) => {
                     required
                   />
                 </UploadOptionFileSelect>
-
               </UploadOptionFileSelectBox>
-
               <UploadOptionNicknameBox>
                 <ModalContentsTitle>
-                  <UploadContentsDot />
+                  <UploadContentsDot/>
                   File Nickname
                 </ModalContentsTitle>
                 <UploadOptionNicknameInput
@@ -145,14 +116,12 @@ const UploadOption = (props) => {
                   required
                 />
               </UploadOptionNicknameBox>
-
               <UploadOptionDateBox>
                 <ModalContentsTitle>
-                  <UploadContentsDot />
+                  <UploadContentsDot/>
                   File Date
                 </ModalContentsTitle>
                 <UploadOptionDateSelect> 
-                  {/* <DateIcon /> */}
                   <UploadOptionDateInput 
                     type="date"
                     value={date}
@@ -161,7 +130,6 @@ const UploadOption = (props) => {
                   />
                 </UploadOptionDateSelect>
               </UploadOptionDateBox>
-
             </ModalContentsWrapper>
             <ContentUploadButton type="submit" value="submit">Upload</ContentUploadButton>
           </UploadOptionModal>

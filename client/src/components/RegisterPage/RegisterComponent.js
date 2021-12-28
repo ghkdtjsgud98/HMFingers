@@ -78,7 +78,6 @@ const Register = () => {
     await axios.post(`${address}/register`, body).then((res) => {
       console.log(res.status);
       if (res.status === 200) navigate('/');
-      // if (res.status === 200) window.location = '/about';
     });
 
   };

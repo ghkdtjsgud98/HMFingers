@@ -18,9 +18,9 @@ export const TitleWrapper = styled.div`
   display : flex;
   flex-direction : column;
   align-items : center;
-
   margin-bottom : 70px;
 `;
+
 export const Title = styled.div`
   position : relative;
   font-size : 60px;
@@ -30,7 +30,6 @@ export const Title = styled.div`
 
 export const SubTitle = styled.div`
   position : relative;
-  //top : 50px;
   font-size : 20px;
   color : #000000;
 `;
