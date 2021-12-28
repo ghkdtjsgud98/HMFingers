@@ -141,7 +141,7 @@ const output = {
 
   getSummary: async (req, res) => {
     const sql = `SELECT * from Scripts where script_id = '${req.query.script_id}';`;
-    connection.query(sql, function (err, rows, fields) {
+    connection.query(sql, async function (err, rows, fields) {
       if (err) {
         console.log(err);
       }
