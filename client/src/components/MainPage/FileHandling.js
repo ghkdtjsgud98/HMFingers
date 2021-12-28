@@ -16,11 +16,14 @@ const FileHandling = (props) => {
 
   var [FileList, setFileList] = useState([]);
   var body = {"user_pk": localStorage.getItem("user_pk")};
+  var [selected, SetSelected] = useState([]);
+
+  console.log(body);
 
   useEffect(() => {
     const axiosGet = () => {
-      axios.get(`${address}/getlist`, { params: body }).then((res) => {
-        // console.log(res.data.filelist);
+      axios.get(`${address}/getList`, { params: body }).then((res) => {
+        // console.log(res);
         setFileList(res.data.filelist);
       });
     };
@@ -33,23 +36,31 @@ const FileHandling = (props) => {
   const FileListCreator = ({FileList}) => {
 
     if(FileList!=undefined){
-
-    return(
-      <>
-       {FileList.map((file) => (
-         <FileWrapper key={file.script_id} onClick={(e) => onClickFile(file.script_id, e)}> 
-            <FileSymbol/>
-            {file.create_date.substring(0,10)}
-            &nbsp;&nbsp;
-            {file.nick_name}
-         </FileWrapper>
-       )) }
-      </>
-    );}
+      return(
+        <>
+        {FileList.map((file) => (
+          <FileWrapper 
+          key={file.script_id} 
+          onClick={(e) => onClickFile(file.script_id, e)}
+          isSelected={`${file.script_id == selected? 'true':null}`}
+          // isActive={`${menu === 0? 'active': null}`} 
+          > 
+              <FileSymbol/>
+              {file.create_date.substring(0,10)}
+              &nbsp;&nbsp;
+              {file.nick_name}
+          </FileWrapper>
+        )) }
+        </>
+      );
+    }else{
+      return null;
+    }
   }
 
   const onClickFile = (scriptId, e) => {
     e.preventDefault();
+    SetSelected(scriptId);
     // console.log("fh", scriptId);
     props.getScriptId(scriptId);
   }
