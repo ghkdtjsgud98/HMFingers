@@ -32,6 +32,8 @@ const FileHandling = (props) => {
 
   const FileListCreator = ({FileList}) => {
 
+    if(FileList!=undefined){
+
     return(
       <>
        {FileList.map((file) => (
@@ -43,7 +45,7 @@ const FileHandling = (props) => {
          </FileWrapper>
        )) }
       </>
-    );
+    );}
   }
 
   const onClickFile = (scriptId, e) => {

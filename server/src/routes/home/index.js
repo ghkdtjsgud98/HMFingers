@@ -11,13 +11,15 @@ const multipartMiddleware = multiparty({ uploadDir: __dirname + "/resources" });
 router.get("/login", ctrl.output.login);
 router.get("/", ctrl.output.home);
 router.get("/register", ctrl.output.register);
-router.get("/getlist", (req, res) => ctrl.output.getlist(req, res));
-router.get("/getfile", multipartMiddleware, (req, res) =>
-  ctrl.output.getfile(req, res)
+router.get("/getFile", multipartMiddleware, (req, res) =>
+  ctrl.output.getFile(req, res)
 );
-router.get("/getaudio", multipartMiddleware, (req, res) =>
-  ctrl.output.getaudio(req, res)
+router.get("/getAudio", (req, res) =>
+  ctrl.output.getAudio(req, res)
 );
+router.get("/getList", (req, res) => ctrl.output.getList(req, res));
+router.get("/getTranslatedFile", (req, res) => ctrl.output.getTranslatedFile(req, res));
+router.get("/getSummary", async (req, res) => await ctrl.output.getSummary(req, res));
 
 router.post("/login", ctrl.process.login);
 router.post("/register", ctrl.process.register);
