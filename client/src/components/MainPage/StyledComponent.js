@@ -104,6 +104,7 @@ export const SummaryWordsList = styled.div`
   font-weight : bold;
   margin-top : 10px;
   display : flex;
+  cursor : pointer;
 `;
 export const SummaryWordsIcon = styled(BsDot)`
   width: 36px;
