@@ -41,7 +41,7 @@ const Output = (props) => {
         isActive={`${menu === 1? 'active': null}`} 
         onClick={() => setMenu(1)}
       >
-        SUMMARY
+        SEARCH
       </TabElement>
       <TabElement
         isActive={`${menu === 2? 'active': null}`} 
