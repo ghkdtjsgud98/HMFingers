@@ -1,9 +1,7 @@
-import React, { useEffect, forwardRef, useState, Component } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { address } from '../../variables';
-// import ReactDatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
 
 import { 
     ModalBackground, 
@@ -40,7 +38,7 @@ const UploadOption = (props) => {
   const [file, setFile] = useState();
   const [date, setDate] = useState('');
   const [filename, setFilename] = useState('');
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const dateHandler = (e) => {
     e.preventDefault();
@@ -59,14 +57,8 @@ const UploadOption = (props) => {
   };
   
 
-  const submitHandler = async (e) => {
+  const SubmitHandler = (e) => {
     e.preventDefault();
-
-    // let body = {
-    //   file : file,
-    //   filename: filename,
-    //   date: date,
-    // };
 
     // const audioSrc = window.URL.createObjectURL(file);
     const data = new FormData()
@@ -75,37 +67,18 @@ const UploadOption = (props) => {
     data.append('date', date);
     data.append('user_pk', localStorage.getItem("user_pk"));
 
-    for (let key of data.keys()) {
-      console.log(key);
-    }
+    // for (let key of data.keys()) {
+    //   console.log(key);
+    // }
     
-    for (let value of data.values()) {
-      console.log(value);
-    }
+    // for (let value of data.values()) {
+    //   console.log(value);
+    // }
 
-    // const data = new FormData();
-    // data.append('file', file);
-    // console.log(data);
-
-    // await axios.post(`${address}/login`, body).then((res) => {
-    //   const accessToken = 'Bearer ' + res.data.accessToken;
-    //   axios.defaults.headers.common['Authorization'] = accessToken;
-    //   localStorage.setItem('Authorization', accessToken);
-
-    //   console.log(res.status);
-      
-    //   if (res.status === 200) navigate('/main');
-    //   // if (res.status === 200) window.location = '/about';
-    // });
-
-    await axios.post(`${address}/uploadAudio`, data).then((res) => {
-
-      // const accessToken = 'Bearer ' + res.data.accessToken;
-      // axios.defaults.headers.common['Authorization'] = accessToken;
-      // localStorage.setItem('Authorization', accessToken);
+    axios.post(`${address}/uploadAudio`, data).then((res) => {
 
       console.log(res);
-      // if (res.status === 201) navigate('/');
+      if (res.status === 200) navigate(0);
     });
 
   };
@@ -115,7 +88,7 @@ const UploadOption = (props) => {
     <>
       {isOpen ? ( 
         <ModalBackground>
-          <UploadOptionModal onSubmit={submitHandler} >
+          <UploadOptionModal onSubmit={SubmitHandler} >
             <ModalCloseButton onClick={close}> 
               &times;
             </ModalCloseButton>

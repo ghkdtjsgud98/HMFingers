@@ -47,11 +47,8 @@ export const TabElement = styled.div`
   position : relative;
   width : 33.333%;
   height : 100%;
-  // background : rgba(196, 196, 196, 1);
   background : ${(props) => props.isActive === 'active' ? 'rgba(243, 243, 243, 1)':'rgba(196, 196, 196, 1)'};
   border-radius: 30px 30px 0px 0px;
-  // border-right :  1px solid rgba(196, 196, 196, 1);
-  // border-left :  1px solid rgba(196, 196, 196, 1);
   text-align : center;
   padding : 13px;
   font-size : 24px;
@@ -64,9 +61,9 @@ export const ContentsWrapper = styled.div`
   display: flex;
   height: 85%;
   position: relative;
-  margin: 15px 15px 0 20px;
+  margin: 20px 20px 0 20px;
   font-size: 17px;
-  line-height: 30px;
+  line-height: 40px;
   overflow: ${(props) => props.isSummary === 'summary' ? 'none':'auto'};;
 `;
 
@@ -379,8 +376,9 @@ export const FileWrapper = styled.div`
   height : 23px;
   margin : 20px 20px 0px 20px;
   font-size : 20px;
-  font-weight : bold;
   display : flex;
+  font-weight : ${(props) => props.isSelected === 'true' ? 'bold':'normal'};
+  color : ${(props) => props.isSelected === 'true' ? '#black':'#646464'};
 
   cursor: pointer;
 `;
