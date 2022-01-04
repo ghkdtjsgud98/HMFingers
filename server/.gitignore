@@ -1,0 +1,14 @@
+# Created by https://www.toptal.com/developers/gitignore/api/macos,vscode,node
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,vscode,node
+
+package-lock.json
+
+### macOS ###
+# General
+.DS_Store
+
+# dotenv environment variables file
+.env
+.env.test
+
+/resources
